@@ -124,7 +124,7 @@ Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dr
 
 ---
 
-## DAX Measures — 38 Total
+## DAX Measures — 36 Total
 
 | Folder | Count | Key Measures |
 |---|---|---|
