@@ -66,51 +66,61 @@ sql/
 
 ---
 
-## Power BI Dashboard — 4 Pages
-## Dashboard Screenshots
-
-### Page 1 — Executive Overview
-![Executive Overview](screenshots/page1_executive_overview.png)
-
-### Page 2 — Revenue & Growth
-![Revenue & Growth](screenshots/page2_revenue_growth.png)
-
-### Page 3 — Margin & Budget
-![Margin & Budget](screenshots/page3_margin_budget.png)
-
-### Page 4 — KPI Scorecard
-![KPI Scorecard](screenshots/page4_kpi_scorecard.png)
-
-### Architectural Decision
-No medallion architecture. Finance data arrives pre-aggregated from source systems — a Bronze→Silver→Gold pipeline adds complexity with no analytical benefit for quarterly P&L data. Four staging tables connect directly to Power BI via Import mode.
-
 ## Data Model
 
 ![Data Model](screenshots/data_model.png)
 
-All relationships: Many-to-Many, Both directions
-Supporting tables: _Measures, Margin Stages (calculated)
-```
+**Three Many-to-Many relationships, Both directions:**
+
+- `pnl_summary[period]` ↔ `budget_vs_actuals[period]`
+- `pnl_summary[period]` ↔ `revenue_by_product_region[period]`
+- `pnl_summary[fiscal_year]` ↔ `kpi_targets_actuals[fiscal_year]`
+
+Supporting calculated tables: `_Measures` (38 DAX measures), `Margin Stages` (waterfall visual)
+
+**Architectural decision:** No medallion architecture. Finance data arrives pre-aggregated from source systems — a Bronze→Silver→Gold pipeline adds complexity with no analytical benefit for quarterly P&L data. Four staging tables connect directly to Power BI via Import mode.
+
+---
+
+## Power BI Dashboard — 4 Pages
 
 ### Page 1 — Executive Overview
-High-level KPI cards with the full revenue-to-net-income story. Three main visuals: annual revenue bar chart showing the 2023 peak and 2024 contraction, revenue by category donut, and margin waterfall. Cards are pinned to specific years via visual-level filters so the crisis narrative holds regardless of slicer selection.
 
-**Key visuals:** 6 KPI cards, clustered bar chart, donut chart, margin waterfall
+![Executive Overview](screenshots/page1_executive_overview.png)
+
+High-level KPI cards with the full revenue-to-net-income story. Annual revenue bar chart showing the 2023 peak and 2024 contraction, revenue by category donut, and margin waterfall. Cards are pinned to specific years via visual-level filters so the crisis narrative holds regardless of slicer selection.
+
+**Key visuals:** 6 KPI cards · Clustered bar chart · Donut chart · Margin waterfall
+
+---
 
 ### Page 2 — Revenue & Growth
+
+![Revenue & Growth](screenshots/page2_revenue_growth.png)
+
 Answers the core question: was 2024's revenue decline a volume problem or a pricing problem? The quarterly trend line makes the 2023 peak and 2024 collapse visually immediate. The deal value collapse chart shows avg deal value fell ~9% across all three product categories simultaneously — confirming systematic discounting, not volume loss.
 
-**Key visuals:** Quarterly revenue trend line, revenue by region clustered bar, deal value collapse horizontal bar, product category revenue trend
+**Key visuals:** Quarterly revenue trend line · Revenue by region bar · Deal value collapse horizontal bar · Product category revenue trend
+
+---
 
 ### Page 3 — Margin & Budget
+
+![Margin & Budget](screenshots/page3_margin_budget.png)
+
 The analytical heart of the project. Three margin lines (gross, EBIT, net) show gross margin held stable at ~66% while EBIT collapsed — isolating opex as the root cause, not COGS. The department budget overrun table ranks all 8 departments. The what-if EBIT chart quantifies how much profit was lost per quarter by spending above 2023 efficiency levels.
 
-**Key visuals:** Three-line margin trend, budget overrun table, opex % area chart, what-if EBIT clustered column, Q1 2025 recovery horizontal bar
+**Key visuals:** Three-line margin trend · Budget overrun table · Opex % area chart · What-if EBIT clustered column · Q1 2025 recovery horizontal bar
+
+---
 
 ### Page 4 — KPI Scorecard
+
+![KPI Scorecard](screenshots/page4_kpi_scorecard.png)
+
 Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dropped from 85.7% in 2023 to 42.9% in 2024. Gross margin has missed target 4 consecutive years — the only chronic miss. Three trajectory cards show where 2025 stands against full-year targets.
 
-**Key visuals:** Full KPI scorecard table, KPI miss magnitude bar chart, three 2025 trajectory cards
+**Key visuals:** Full KPI scorecard table · KPI miss magnitude bar chart · Three 2025 trajectory cards
 
 ---
 
@@ -124,6 +134,40 @@ Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dr
 | 03 - KPI | 6 | KPI Hit Rate %, Miss Count, Hit Count, Avg vs Target, 2025 EBIT Gap, Trajectory Label |
 | 04 - Labels | 5 | Formatted text measures for card subtitles |
 
+### Notable DAX Patterns
+
+**Cross-year baseline with REMOVEFILTERS — what-if EBIT analysis:**
+```dax
+EBIT If Opex Controlled =
+VAR Rev2023 =
+    CALCULATE(SUM('novatech pnl_summary'[total_revenue_usd]),
+        REMOVEFILTERS('novatech pnl_summary'),
+        'novatech pnl_summary'[fiscal_year] = 2023)
+VAR Opex2023 =
+    CALCULATE(SUM('novatech pnl_summary'[total_opex_usd]),
+        REMOVEFILTERS('novatech pnl_summary'),
+        'novatech pnl_summary'[fiscal_year] = 2023)
+VAR Baseline = DIVIDE(Opex2023, Rev2023, 0)
+RETURN
+    SUM('novatech pnl_summary'[gross_profit_usd]) -
+    (SUM('novatech pnl_summary'[total_revenue_usd]) * Baseline)
+```
+
+**Dynamic KPI trajectory label:**
+```dax
+KPI Trajectory Label =
+VAR gap = CALCULATE(
+    AVERAGE('novatech kpi_targets_actuals'[vs_target]),
+    'novatech kpi_targets_actuals'[status] <> "Forecast")
+RETURN
+SWITCH(TRUE(),
+    gap >= 0,  "Ahead of Target",
+    gap >= -1, "On Track",
+    gap >= -3, "At Risk",
+               "Critical Gap")
+```
+
+---
 
 ## Key Business Findings
 
@@ -164,6 +208,7 @@ novatech-financial-analytics/
 │   └── page4_kpi_scorecard.html
 │
 ├── screenshots/
+│   ├── data_model.png
 │   ├── page1_executive_overview.png
 │   ├── page2_revenue_growth.png
 │   ├── page3_margin_budget.png
