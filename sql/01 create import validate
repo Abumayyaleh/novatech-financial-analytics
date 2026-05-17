@@ -1,0 +1,168 @@
+-- ============================================================
+-- NOVATECH SOLUTIONS | FINANCIAL PERFORMANCE ANALYTICS
+-- Script 01: Schema, Staging Tables, Data Import, Validation
+-- Author: Mohammad
+-- Dataset: Synthetic | Generated for portfolio demonstration
+-- Tool: PostgreSQL via Valentina Studio
+-- Database: Finance
+-- ============================================================
+
+
+-- ============================================================
+-- SECTION 1: SCHEMA & STAGING TABLES
+-- ============================================================
+
+CREATE SCHEMA IF NOT EXISTS novatech;
+
+-- ── TABLE 1: P&L Summary ────────────────────────────────────
+CREATE TABLE novatech.pnl_summary (
+    fiscal_year             INT,
+    quarter                 VARCHAR(2),
+    period                  VARCHAR(10),
+    total_revenue_usd       NUMERIC(15,2),
+    total_cogs_usd          NUMERIC(15,2),
+    gross_profit_usd        NUMERIC(15,2),
+    gross_margin_pct        NUMERIC(6,2),
+    total_opex_usd          NUMERIC(15,2),
+    ebit_usd                NUMERIC(15,2),
+    ebit_margin_pct         NUMERIC(6,2),
+    interest_expense_usd    NUMERIC(15,2),
+    ebt_usd                 NUMERIC(15,2),
+    net_income_usd          NUMERIC(15,2),
+    net_margin_pct          NUMERIC(6,2)
+);
+
+-- ── TABLE 2: Budget vs Actuals ───────────────────────────────
+CREATE TABLE novatech.budget_vs_actuals (
+    fiscal_year             INT,
+    quarter                 VARCHAR(2),
+    period                  VARCHAR(10),
+    department              VARCHAR(60),
+    cost_type               VARCHAR(20),
+    headcount               INT,
+    budget_usd              NUMERIC(15,2),
+    actual_usd              NUMERIC(15,2),
+    variance_usd            NUMERIC(15,2),
+    variance_pct            NUMERIC(6,2),
+    has_actual              BOOLEAN
+);
+
+-- ── TABLE 3: Revenue by Product & Region ────────────────────
+CREATE TABLE novatech.revenue_by_product_region (
+    fiscal_year             INT,
+    quarter                 VARCHAR(2),
+    period                  VARCHAR(10),
+    region                  VARCHAR(30),
+    product_name            VARCHAR(60),
+    product_category        VARCHAR(40),
+    deals_closed            INT,
+    avg_deal_value_usd      NUMERIC(15,2),
+    revenue_usd             NUMERIC(15,2),
+    cogs_usd                NUMERIC(15,2),
+    gross_profit_usd        NUMERIC(15,2),
+    gross_margin_pct        NUMERIC(6,2)
+);
+
+-- ── TABLE 4: KPI Targets vs Actuals ─────────────────────────
+CREATE TABLE novatech.kpi_targets_actuals (
+    fiscal_year             INT,
+    kpi_name                VARCHAR(60),
+    target                  NUMERIC(8,2),
+    actual                  NUMERIC(8,2),
+    vs_target               NUMERIC(8,2),
+    status                  VARCHAR(15)
+);
+
+
+-- ============================================================
+-- SECTION 2: DATA IMPORT
+-- ============================================================
+
+-- ── IMPORT 1: P&L Summary ───────────────────────────────────
+COPY novatech.pnl_summary
+FROM 'D:\Finance\pnl_summary.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- ── IMPORT 2: Budget vs Actuals ─────────────────────────────
+COPY novatech.budget_vs_actuals
+FROM 'D:\Finance\budget_vs_actuals.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- ── IMPORT 3: Revenue by Product & Region ───────────────────
+COPY novatech.revenue_by_product_region
+FROM 'D:\Finance\revenue_by_product_region.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- ── IMPORT 4: KPI Targets vs Actuals ────────────────────────
+COPY novatech.kpi_targets_actuals
+FROM 'D:\Finance\kpi_targets_actuals.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- ── ROW COUNT VALIDATION ─────────────────────────────────────
+-- Expected: 13, 128, 351, 28
+SELECT 'pnl_summary'               AS table_name, COUNT(*) AS rows FROM novatech.pnl_summary
+UNION ALL
+SELECT 'budget_vs_actuals',                        COUNT(*) FROM novatech.budget_vs_actuals
+UNION ALL
+SELECT 'revenue_by_product_region',                COUNT(*) FROM novatech.revenue_by_product_region
+UNION ALL
+SELECT 'kpi_targets_actuals',                      COUNT(*) FROM novatech.kpi_targets_actuals;
+
+
+-- ============================================================
+-- SECTION 3: DATA VALIDATION & SANITY CHECKS
+-- ============================================================
+
+-- ── CHECK 1: Period coverage — confirm all expected quarters exist
+SELECT
+    fiscal_year,
+    COUNT(DISTINCT quarter)                         AS quarters_present,
+    STRING_AGG(quarter, ', ' ORDER BY quarter)      AS quarters
+FROM novatech.pnl_summary
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+-- Expected: 2022-2024 have 4 quarters each, 2025 has 1
+
+-- ── CHECK 2: Null check on critical financial columns
+SELECT
+    SUM(CASE WHEN total_revenue_usd  IS NULL THEN 1 ELSE 0 END) AS null_revenue,
+    SUM(CASE WHEN gross_profit_usd   IS NULL THEN 1 ELSE 0 END) AS null_gross_profit,
+    SUM(CASE WHEN ebit_usd           IS NULL THEN 1 ELSE 0 END) AS null_ebit,
+    SUM(CASE WHEN net_income_usd     IS NULL THEN 1 ELSE 0 END) AS null_net_income
+FROM novatech.pnl_summary;
+-- Expected: all zeros
+
+-- ── CHECK 3: Budget actuals — confirm 2025 has nulls only in future quarters
+SELECT
+    fiscal_year,
+    quarter,
+    COUNT(*)                                                AS total_rows,
+    SUM(CASE WHEN actual_usd IS NULL THEN 1 ELSE 0 END)   AS null_actuals
+FROM novatech.budget_vs_actuals
+GROUP BY fiscal_year, quarter
+ORDER BY fiscal_year, quarter;
+-- Expected: only 2025 Q2/Q3/Q4 have null actuals
+
+-- ── CHECK 4: Gross profit reconciliation
+SELECT
+    period,
+    gross_profit_usd                                AS reported_gross_profit,
+    ROUND(total_revenue_usd - total_cogs_usd, 2)   AS calculated_gross_profit,
+    ROUND(gross_profit_usd -
+         (total_revenue_usd - total_cogs_usd), 2)  AS discrepancy
+FROM novatech.pnl_summary
+WHERE ROUND(gross_profit_usd -
+           (total_revenue_usd - total_cogs_usd), 2) <> 0;
+-- Expected: 0 rows returned
+
+-- ── CHECK 5: KPI status distribution
+SELECT
+    status,
+    COUNT(*) AS count
+FROM novatech.kpi_targets_actuals
+GROUP BY status;
+-- Expected: only Hit / Miss / Forecast
