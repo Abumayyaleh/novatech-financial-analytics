@@ -1,14 +1,16 @@
 # NovaTech Solutions — Financial Performance Analytics
 
-**End-to-end financial analytics project** covering data modeling, SQL business analysis, Power BI executive dashboard, and AI-generated narrative reporting.
+**End-to-end financial analytics project** covering data modeling, SQL business analysis, Power BI executive dashboard, and DAX measures across 13 quarters of synthetic B2B software company data.
 
 ---
 
 ## Project Summary
 
-NovaTech Solutions is a synthetic B2B software company operating across MENA, Europe, and Asia-Pacific. This project analyzes 13 quarters of financial performance (FY 2022 – Q1 2025) across four analytical layers: revenue growth, margin decomposition, budget variance, and KPI execution tracking.
+NovaTech Solutions is a synthetic B2B software company operating across MENA, Europe, and Asia-Pacific with three product lines: Cloud Software, Professional Services, and Support & Maintenance.
 
-The central finding: after a record revenue peak of $12.69M in FY 2023, NovaTech contracted 17.6% in FY 2024 — driven not by demand collapse but by systematic deal discounting and an opex crisis that pushed operating expenses from 30% to 38% of revenue, compressing EBIT margins by 7.8 percentage points.
+This project analyzes 13 quarters of financial performance (FY 2022 – Q1 2025) to answer one central business question: **what caused NovaTech's financial performance to collapse in 2024, and is the recovery in Q1 2025 genuine?**
+
+The answer: a double crisis — revenue contracted 17.6% due to systematic deal discounting (−9.2% avg deal value), while operating expenses simultaneously ballooned from 30.1% to 38.0% of revenue, with 32 of 32 departments exceeding budget. EBIT margin dropped 7.8 percentage points. Q1 2025 shows the first signs of genuine recovery with cost controls working across multiple departments.
 
 ---
 
@@ -17,167 +19,116 @@ The central finding: after a record revenue peak of $12.69M in FY 2023, NovaTech
 | Layer | Tool | Purpose |
 |---|---|---|
 | Database | PostgreSQL | Schema design, data import, business analysis |
-| Query Language | SQL | 7 analytical sections, 35 business questions |
+| Query Language | PostgreSQL (CTEs, window functions, CASE, CROSS JOIN) | 35 business questions across 7 analytical sections |
 | Visualization | Power BI Desktop | 4-page executive dashboard |
-| Data Modeling | DAX | 38 measures across 4 folders |
-| AI Layer | Claude Sonnet (Anthropic) | Automated CFO narrative generation |
+| Data Modeling | DAX | 38 measures across 5 folders |
+| Architecture | Staging → Analytics | Finance data arrives pre-aggregated — no medallion needed |
 
 ---
 
 ## Dataset
 
-Four synthetic CSV tables generated to reflect realistic B2B software financials:
+Four synthetic CSV tables generated to reflect realistic B2B software financials. All figures are fictional but modeled on realistic industry benchmarks.
 
 | Table | Rows | Description |
 |---|---|---|
-| `pnl_summary` | 13 | Quarterly P&L from revenue to net income |
-| `budget_vs_actuals` | 128 | Department-level budget vs actual spend |
-| `revenue_by_product_region` | 351 | Revenue, COGS, and margins by product and region |
-| `kpi_targets_actuals` | 28 | 7 KPIs tracked against targets across 4 years |
-
-**Note:** Dataset is synthetic and generated for portfolio demonstration purposes. All company names, figures, and structures are fictional but modeled on realistic B2B software industry benchmarks.
+| `pnl_summary.csv` | 13 | Quarterly P&L from revenue to net income |
+| `budget_vs_actuals.csv` | 128 | Department-level budget vs actual spend with variance flags |
+| `revenue_by_product_region.csv` | 351 | Revenue, COGS, and gross margins by product × region × quarter |
+| `kpi_targets_actuals.csv` | 28 | 7 KPIs tracked against targets across 4 fiscal years |
 
 ---
 
 ## SQL Analysis Structure
 
 ```
-01_CREATE_IMPORT_VALIDATE.sql
-├── Section 1: Schema & Staging Tables
-├── Section 2: Data Import (COPY from CSV)
-└── Section 3: Data Validation & Sanity Checks
-
-02_FINANCIAL_BUSINESS_ANALYSIS.sql
-├── Section 4: Revenue & Growth Analysis
-├── Section 5: Margin & Profitability Analysis
-├── Section 6: Budget Variance Analysis
-└── Section 7: KPI Scorecard & Forward Look
+sql/
+├── 01_CREATE_IMPORT_VALIDATE.sql
+│   ├── Section 1: Schema & Staging Tables
+│   ├── Section 2: Data Import (COPY from CSV)
+│   └── Section 3: Data Validation & Sanity Checks
+│
+└── 02_FINANCIAL_BUSINESS_ANALYSIS.sql
+    ├── Section 4: Revenue & Growth Analysis
+    ├── Section 5: Margin & Profitability Analysis
+    ├── Section 6: Budget Variance Analysis
+    └── Section 7: KPI Scorecard & Forward Look
 ```
 
-### Key SQL Techniques Used
-- Window functions with `LAG()` for YoY growth calculations
-- `CROSS JOIN` with CTE baselines for what-if analysis
-- Seasonal index modeling using `AVG() OVER()` for 2025 projections
-- Conditional aggregation for KPI hit rate scoring
-- Pivot-style queries using `MAX(CASE WHEN quarter = ...)` for quarterly trend comparison
+### Key SQL Techniques
+
+- `LAG()` window function for YoY growth calculations across fiscal years
+- `CROSS JOIN` with CTE baseline for what-if opex efficiency analysis
+- `AVG() OVER()` seasonal index modeling for 2025 revenue projections
+- Conditional aggregation (`CASE WHEN`) for KPI hit rate scoring
+- Pivot-style quarterly trend queries using `MAX(CASE WHEN quarter = ...)`
+- `NULLIF()` to guard against division by zero in per-head cost calculations
 
 ---
 
-## Power BI Dashboard
+## Power BI Dashboard — 4 Pages
 
-Four pages each telling a distinct chapter of the business story:
+### Architectural Decision
+No medallion architecture. Finance data arrives pre-aggregated from source systems — a Bronze→Silver→Gold pipeline adds complexity with no analytical benefit for quarterly P&L data. Four staging tables connect directly to Power BI via Import mode.
+
+### Data Model
+```
+novatech pnl_summary
+    ├── [period]      →→  novatech budget_vs_actuals [period]
+    ├── [period]      →→  novatech revenue_by_product_region [period]
+    └── [fiscal_year] →→  novatech kpi_targets_actuals [fiscal_year]
+
+All relationships: Many-to-Many, Both directions
+Supporting tables: _Measures, Margin Stages (calculated)
+```
 
 ### Page 1 — Executive Overview
-High-level KPI cards anchored to the 2024 crisis year. Three insight callout cards translate data into plain business language for non-technical audiences.
+High-level KPI cards with the full revenue-to-net-income story. Three main visuals: annual revenue bar chart showing the 2023 peak and 2024 contraction, revenue by category donut, and margin waterfall. Cards are pinned to specific years via visual-level filters so the crisis narrative holds regardless of slicer selection.
 
-**Key visuals:** Annual revenue bar chart, revenue by category donut, margin waterfall, insight callout cards
+**Key visuals:** 6 KPI cards, clustered bar chart, donut chart, margin waterfall
 
 ### Page 2 — Revenue & Growth
-Answers the core 2024 question: was the revenue decline a volume problem or a pricing problem? The quarterly trend line shows the 2023 peak and 2024 collapse. The dual-axis deal chart proves the answer was pricing — deal values fell 9.2% while volume held.
+Answers the core question: was 2024's revenue decline a volume problem or a pricing problem? The quarterly trend line makes the 2023 peak and 2024 collapse visually immediate. The deal value collapse chart shows avg deal value fell ~9% across all three product categories simultaneously — confirming systematic discounting, not volume loss.
 
-**Key visuals:** Quarterly revenue trend line, revenue by region clustered bar, deal volume vs deal value dual-axis, product category revenue trend
+**Key visuals:** Quarterly revenue trend line, revenue by region clustered bar, deal value collapse horizontal bar, product category revenue trend
 
 ### Page 3 — Margin & Budget
-The technical heart of the dashboard. Three margin lines show gross margin held stable while EBIT collapsed — isolating opex as the cause. The department overrun table ranks all 8 departments by variance with severity flags. The what-if chart quantifies how much EBIT was lost quarterly by spending above 2023 efficiency levels.
+The analytical heart of the project. Three margin lines (gross, EBIT, net) show gross margin held stable at ~66% while EBIT collapsed — isolating opex as the root cause, not COGS. The department budget overrun table ranks all 8 departments. The what-if EBIT chart quantifies how much profit was lost per quarter by spending above 2023 efficiency levels.
 
-**Key visuals:** Three-line margin trend, department budget overrun table, opex % area chart, what-if EBIT comparison bars, Q1 2025 recovery status
+**Key visuals:** Three-line margin trend, budget overrun table, opex % area chart, what-if EBIT clustered column, Q1 2025 recovery horizontal bar
 
 ### Page 4 — KPI Scorecard
-Execution tracking across all 7 KPIs for all 4 years. Hit rate dropped from 85.7% in 2023 to 42.9% in 2024. Gross margin has missed target for 4 consecutive years — the only chronic miss in the dataset. The AI Audit Brief in the bottom right corner is generated by Claude from the Gold Layer SQL output.
+Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dropped from 85.7% in 2023 to 42.9% in 2024. Gross margin has missed target 4 consecutive years — the only chronic miss. Three trajectory cards show where 2025 stands against full-year targets.
 
-**Key visuals:** Full KPI scorecard table, KPI miss magnitude bar chart, 2025 trajectory cards, AI Audit Brief
+**Key visuals:** Full KPI scorecard table, KPI miss magnitude bar chart, three 2025 trajectory cards
 
 ---
 
 ## DAX Measures — 38 Total
 
-Organized into 4 display folders:
+| Folder | Count | Key Measures |
+|---|---|---|
+| 00 - Revenue | 8 | Total Revenue, YoY Growth %, Product Revenue, Avg Deal Value, Deal Value Change YoY % |
+| 01 - Margin | 9 | Avg Gross/EBIT/Net Margin %, Opex % of Revenue, Excess Opex vs 2023, EBIT If Opex Controlled |
+| 02 - Budget | 8 | Total Budget, Actual Spend, Variance $/%, Depts Over Budget, Budget Variance Flag |
+| 03 - KPI | 6 | KPI Hit Rate %, Miss Count, Hit Count, Avg vs Target, 2025 EBIT Gap, Trajectory Label |
+| 04 - Labels | 5 | Formatted text measures for card subtitles |
 
-```
-00 - Revenue       (8 measures)   Total Revenue, YoY Growth, Deal Value, Product Revenue
-01 - Margin        (9 measures)   Gross/EBIT/Net margins, Opex %, Excess Opex, What-If EBIT
-02 - Budget        (8 measures)   Budget, Actual, Variance $/%,Dept flags, Recovery status
-03 - KPI           (6 measures)   Hit rate, Miss count, Gap, Trajectory label
-04 - Labels        (5 measures)   Formatted text measures for card subtitles
-```
-
-### Notable DAX Patterns
-
-**What-If analysis using hardcoded baseline:**
-```dax
-EBIT If Opex Controlled =
-VAR Baseline2023Ratio = 0.3013
-VAR ControlledOpex =
-    SUM('novatech pnl_summary'[total_revenue_usd]) * Baseline2023Ratio
-RETURN
-    SUM('novatech pnl_summary'[gross_profit_usd]) - ControlledOpex
-```
-
-**Cross-year baseline with REMOVEFILTERS:**
-```dax
-Excess Opex vs 2023 =
-VAR Rev2023 = CALCULATE(SUM(...[total_revenue_usd]),
-    REMOVEFILTERS('novatech pnl_summary'),
-    'novatech pnl_summary'[fiscal_year] = 2023)
-...
-```
-
----
-
-## AI Audit Brief — Methodology
-
-The CFO Narrative on Page 4 demonstrates an AI-assisted analytics workflow:
-
-**Workflow:**
-1. Gold Layer SQL views surface anomaly data (margin compression, opex overruns, KPI misses)
-2. Query results are passed to Claude Sonnet (claude-sonnet-4-6) as structured context
-3. Claude generates a paragraph-length executive narrative from the data
-4. Output is reviewed, validated against dashboard figures, and placed as a text visual
-
-**The prompt pattern used:**
-```
-Given the following financial anomalies from NovaTech Solutions Q1 2025 data:
-[SQL query output]
-
-Write a CFO-level paragraph summarizing the key findings, root causes,
-and forward outlook. Use specific numbers. Tone: direct, analytical, non-alarmist.
-```
-
-**Generated output (May 2025):**
-> NovaTech Solutions enters Q1 2025 in a measured recovery following a significant operational setback in FY 2024. After reaching peak annual revenue of $12.69M in FY 2023, the business contracted 17.6% to $10.45M in FY 2024 — driven not by demand collapse but by systematic deal discounting, with average deal values falling 9.2% across all product categories. Compounding the revenue decline, operating expenses expanded to 38% of revenue against a 30.1% baseline established in 2023, generating $824K in excess overhead and compressing EBIT margins from 36.5% to 28.7%. Cloud Software, G&A, and R&D were the primary overrun contributors, each exceeding budget by more than 10%. Q1 2025 signals genuine course correction — Finance, HR, and Cloud Software have returned negative budget variance for the first time since 2023, and EBIT margin has recovered to 31.2%. However, with gross margin chronically missing targets for four consecutive years and EBIT still 3.7 percentage points below the FY 2025 target of 18.5%, full recovery requires sustained pricing discipline and opex restraint through Q4 2025.
-
----
-
-## Data Architecture
-
-```
-PostgreSQL (Finance database)
-└── novatech schema
-    ├── pnl_summary              ← staging table
-    ├── budget_vs_actuals        ← staging table
-    ├── revenue_by_product_region ← staging table
-    └── kpi_targets_actuals      ← staging table
-
-Power BI Data Model
-├── 3 Many-to-Many relationships via period and fiscal_year
-├── _Measures table (38 DAX measures)
-├── Margin Stages calculated table (for waterfall visual)
-└── Year Label calculated columns (for legend formatting)
-```
-
-**Architectural decision:** No medallion architecture used. Finance data arrives pre-aggregated from source systems — a Bronze→Silver→Gold pipeline would add complexity without analytical benefit for quarterly P&L data. Staging tables connect directly to Power BI via Import mode.
-
----
 
 ## Key Business Findings
 
-1. **2024 revenue contracted 17.6%** — caused by pricing erosion (−9.2% avg deal value) not volume loss
-2. **Opex expanded 800bps in 2024** — from 30.1% to 38.0% of revenue, generating $824K excess spend
-3. **EBIT margin dropped 7.8 points** — from 36.5% to 28.7% — while gross margin held stable at 66%
-4. **Cloud Software, G&A, and R&D** each overran 2024 budgets by more than 10%
-5. **Gross margin has missed target 4 consecutive years** — the only chronic KPI miss in the dataset
-6. **Q1 2025 shows genuine recovery** — 3 departments returned negative variance, EBIT recovering to 31.2%
-7. **Q4 seasonality is structural** — Q4 revenue consistently 21% above quarterly average
+| # | Finding | Evidence |
+|---|---|---|
+| 1 | 2024 revenue contracted 17.6% | $12.7M (2023) → $10.5M (2024) |
+| 2 | Pricing not volume drove the decline | Avg deal value fell −9.2% across all 3 categories |
+| 3 | Opex expanded 800bps in 2024 | From 30.1% to 38.0% of revenue |
+| 4 | Every department overspent in 2024 | 32 of 32 budget rows show positive variance |
+| 5 | Cloud Software, G&A, R&D were worst | +11.5%, +10.2%, +9.4% over budget |
+| 6 | Gross margin held — COGS not the issue | Stable at ~66% across all periods |
+| 7 | Gross margin chronically misses target | 4 consecutive years below target |
+| 8 | Q1 2025 recovery is genuine | Finance −2.8%, HR −2.3%, Cloud SW −0.1% under budget |
+| 9 | EBIT recovering but gap remains | 31.2% actual vs 18.5% full-year target |
+| 10 | Q4 seasonality is structural | Q4 revenue ~21% above quarterly average consistently |
 
 ---
 
@@ -185,21 +136,31 @@ Power BI Data Model
 
 ```
 novatech-financial-analytics/
+│
 ├── data/
 │   ├── pnl_summary.csv
 │   ├── budget_vs_actuals.csv
 │   ├── revenue_by_product_region.csv
 │   └── kpi_targets_actuals.csv
+│
 ├── sql/
 │   ├── 01_CREATE_IMPORT_VALIDATE.sql
 │   └── 02_FINANCIAL_BUSINESS_ANALYSIS.sql
-├── powerbi/
-│   └── NovaTech_Financial_Analytics.pbix
+│
+├── wireframes/
+│   ├── page1_executive_overview.html
+│   ├── page2_revenue_growth.html
+│   ├── page3_margin_budget.html
+│   └── page4_kpi_scorecard.html
+│
 ├── screenshots/
 │   ├── page1_executive_overview.png
 │   ├── page2_revenue_growth.png
 │   ├── page3_margin_budget.png
 │   └── page4_kpi_scorecard.png
+│
+├── NovaTech_Financial_Analytics.pbix
+├── NovaTech_LinkedIn_Findings.pptx
 └── README.md
 ```
 
@@ -214,4 +175,4 @@ Junior Data Analyst | SQL · Power BI · DAX · Financial Analytics
 
 ---
 
-*This project is part of a data analytics portfolio. Dataset is synthetic and generated for demonstration purposes.*
+*Dataset is synthetic and generated for portfolio demonstration purposes. All company names, figures, and structures are fictional.*
