@@ -106,7 +106,7 @@ Answers the core question: was 2024's revenue decline a volume problem or a pric
 
 ### Page 3 — Margin & Budget
 
-![Margin & Budget](screenshots/page3_margin_budget.png)
+![Margin & Budget](screenshots/page4_kpi_scorecard.png)
 
 The analytical heart of the project. Three margin lines (gross, EBIT, net) show gross margin held stable at ~66% while EBIT collapsed — isolating opex as the root cause, not COGS. The department budget overrun table ranks all 8 departments. The what-if EBIT chart quantifies how much profit was lost per quarter by spending above 2023 efficiency levels.
 
@@ -116,7 +116,7 @@ The analytical heart of the project. Three margin lines (gross, EBIT, net) show 
 
 ### Page 4 — KPI Scorecard
 
-![KPI Scorecard](screenshots/page4_kpi_scorecard.png)
+![KPI Scorecard](screenshots/page3_margin_budget.png)
 
 Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dropped from 85.7% in 2023 to 42.9% in 2024. Gross margin has missed target 4 consecutive years — the only chronic miss. Three trajectory cards show where 2025 stands against full-year targets.
 
