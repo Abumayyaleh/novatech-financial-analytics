@@ -1,0 +1,352 @@
+fiscal_year,quarter,period,region,product_name,product_category,deals_closed,avg_deal_value_usd,revenue_usd,cogs_usd,gross_profit_usd,gross_margin_pct
+2022,Q1,2022-Q1,MENA,NovaCRM Enterprise,Cloud Software,3,45518.97,136556.91,32563.08,103993.83,76.15
+2022,Q1,2022-Q1,MENA,NovaCRM Professional,Cloud Software,4,16523.36,66093.43,17555.81,48537.62,73.44
+2022,Q1,2022-Q1,MENA,NovaERP Core,Cloud Software,4,72134.31,288537.22,75471.77,213065.45,73.84
+2022,Q1,2022-Q1,MENA,NovaERP Lite,Cloud Software,4,21912.91,87651.65,22043.01,65608.64,74.85
+2022,Q1,2022-Q1,MENA,Implementation Package,Professional Services,3,35413.56,106240.67,68301.34,37939.33,35.71
+2022,Q1,2022-Q1,MENA,Custom Integration,Professional Services,2,20736.46,41472.92,26366.85,15106.07,36.42
+2022,Q1,2022-Q1,MENA,Training & Onboarding,Professional Services,3,8377.74,25133.23,15960.46,9172.77,36.5
+2022,Q1,2022-Q1,MENA,Annual Support Plan,Support & Maintenance,8,9512.32,76098.53,29159.63,46938.9,61.68
+2022,Q1,2022-Q1,MENA,Premium SLA Contract,Support & Maintenance,5,16612.72,83063.6,31874.93,51188.67,61.63
+2022,Q1,2022-Q1,Europe,NovaCRM Enterprise,Cloud Software,3,44543.28,133629.85,32258.75,101371.1,75.86
+2022,Q1,2022-Q1,Europe,NovaCRM Professional,Cloud Software,3,18621.27,55863.8,13027.96,42835.84,76.68
+2022,Q1,2022-Q1,Europe,NovaERP Core,Cloud Software,4,69232.29,276929.14,74575.67,202353.47,73.07
+2022,Q1,2022-Q1,Europe,NovaERP Lite,Cloud Software,3,23032.28,69096.84,18571.77,50525.07,73.12
+2022,Q1,2022-Q1,Europe,Implementation Package,Professional Services,3,35789.63,107368.89,67086.43,40282.46,37.52
+2022,Q1,2022-Q1,Europe,Custom Integration,Professional Services,2,22006.52,44013.05,30573.89,13439.16,30.53
+2022,Q1,2022-Q1,Europe,Training & Onboarding,Professional Services,2,8378.81,16757.61,10509.0,6248.61,37.29
+2022,Q1,2022-Q1,Europe,Annual Support Plan,Support & Maintenance,6,8909.34,53456.06,20779.2,32676.86,61.13
+2022,Q1,2022-Q1,Europe,Premium SLA Contract,Support & Maintenance,6,17570.55,105423.29,40431.33,64991.96,61.65
+2022,Q1,2022-Q1,Asia-Pacific,NovaCRM Enterprise,Cloud Software,2,47596.46,95192.93,22993.4,72199.53,75.85
+2022,Q1,2022-Q1,Asia-Pacific,NovaCRM Professional,Cloud Software,3,16616.78,49850.34,12424.98,37425.36,75.08
+2022,Q1,2022-Q1,Asia-Pacific,NovaERP Core,Cloud Software,3,65359.69,196079.08,47738.23,148340.85,75.65
+2022,Q1,2022-Q1,Asia-Pacific,NovaERP Lite,Cloud Software,2,21828.15,43656.3,11769.67,31886.63,73.04
+2022,Q1,2022-Q1,Asia-Pacific,Implementation Package,Professional Services,2,35751.84,71503.68,44652.81,26850.87,37.55
+2022,Q1,2022-Q1,Asia-Pacific,Custom Integration,Professional Services,2,22308.75,44617.5,29445.16,15172.34,34.01
+2022,Q1,2022-Q1,Asia-Pacific,Training & Onboarding,Professional Services,2,8175.1,16350.19,10370.64,5979.55,36.57
+2022,Q1,2022-Q1,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,9836.09,49180.46,21135.88,28044.58,57.02
+2022,Q1,2022-Q1,Asia-Pacific,Premium SLA Contract,Support & Maintenance,4,18173.34,72693.37,31116.67,41576.7,57.19
+2022,Q2,2022-Q2,MENA,NovaCRM Enterprise,Cloud Software,3,43678.77,131036.32,34022.9,97013.42,74.04
+2022,Q2,2022-Q2,MENA,NovaCRM Professional,Cloud Software,4,18472.94,73891.75,17408.22,56483.53,76.44
+2022,Q2,2022-Q2,MENA,NovaERP Core,Cloud Software,5,66977.58,334887.88,79216.47,255671.41,76.35
+2022,Q2,2022-Q2,MENA,NovaERP Lite,Cloud Software,3,24532.47,73597.41,18885.68,54711.73,74.34
+2022,Q2,2022-Q2,MENA,Implementation Package,Professional Services,2,33383.86,66767.72,46018.24,20749.48,31.08
+2022,Q2,2022-Q2,MENA,Custom Integration,Professional Services,2,22494.78,44989.56,28958.43,16031.13,35.63
+2022,Q2,2022-Q2,MENA,Training & Onboarding,Professional Services,2,8239.92,16479.83,10371.47,6108.36,37.07
+2022,Q2,2022-Q2,MENA,Annual Support Plan,Support & Maintenance,7,9363.92,65547.42,25095.59,40451.83,61.71
+2022,Q2,2022-Q2,MENA,Premium SLA Contract,Support & Maintenance,7,17236.51,120655.54,48598.53,72057.01,59.72
+2022,Q2,2022-Q2,Europe,NovaCRM Enterprise,Cloud Software,4,47694.51,190778.05,44771.01,146007.04,76.53
+2022,Q2,2022-Q2,Europe,NovaCRM Professional,Cloud Software,4,17894.81,71579.25,17422.12,54157.13,75.66
+2022,Q2,2022-Q2,Europe,NovaERP Core,Cloud Software,3,73375.47,220126.42,56088.85,164037.57,74.52
+2022,Q2,2022-Q2,Europe,NovaERP Lite,Cloud Software,4,24818.01,99272.05,25964.0,73308.05,73.85
+2022,Q2,2022-Q2,Europe,Implementation Package,Professional Services,2,33136.54,66273.08,41343.99,24929.09,37.62
+2022,Q2,2022-Q2,Europe,Custom Integration,Professional Services,2,19910.66,39821.31,26173.29,13648.02,34.27
+2022,Q2,2022-Q2,Europe,Training & Onboarding,Professional Services,2,8767.88,17535.75,11110.24,6425.51,36.64
+2022,Q2,2022-Q2,Europe,Annual Support Plan,Support & Maintenance,7,8799.31,61595.17,26003.81,35591.36,57.78
+2022,Q2,2022-Q2,Europe,Premium SLA Contract,Support & Maintenance,5,17272.68,86363.38,36188.58,50174.8,58.1
+2022,Q2,2022-Q2,Asia-Pacific,NovaCRM Enterprise,Cloud Software,2,44850.61,89701.22,23222.76,66478.46,74.11
+2022,Q2,2022-Q2,Asia-Pacific,NovaCRM Professional,Cloud Software,3,17931.1,53793.3,13865.65,39927.65,74.22
+2022,Q2,2022-Q2,Asia-Pacific,NovaERP Core,Cloud Software,3,67519.43,202558.29,49389.35,153168.94,75.62
+2022,Q2,2022-Q2,Asia-Pacific,NovaERP Lite,Cloud Software,2,24870.42,49740.84,12601.13,37139.71,74.67
+2022,Q2,2022-Q2,Asia-Pacific,Implementation Package,Professional Services,1,33925.53,33925.53,23629.72,10295.81,30.35
+2022,Q2,2022-Q2,Asia-Pacific,Custom Integration,Professional Services,1,21734.56,21734.56,14140.77,7593.79,34.94
+2022,Q2,2022-Q2,Asia-Pacific,Training & Onboarding,Professional Services,1,7673.09,7673.09,5284.46,2388.63,31.13
+2022,Q2,2022-Q2,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,9453.79,47268.96,19502.49,27766.47,58.74
+2022,Q2,2022-Q2,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,18109.54,90547.72,34205.53,56342.19,62.22
+2022,Q3,2022-Q3,MENA,NovaCRM Enterprise,Cloud Software,4,47568.35,190273.39,46990.91,143282.48,75.3
+2022,Q3,2022-Q3,MENA,NovaCRM Professional,Cloud Software,4,18722.79,74891.16,19997.64,54893.52,73.3
+2022,Q3,2022-Q3,MENA,NovaERP Core,Cloud Software,4,66022.97,264091.88,71144.67,192947.21,73.06
+2022,Q3,2022-Q3,MENA,NovaERP Lite,Cloud Software,5,22048.79,110243.93,29416.79,80827.14,73.32
+2022,Q3,2022-Q3,MENA,Implementation Package,Professional Services,3,34223.9,102671.7,67711.23,34960.47,34.05
+2022,Q3,2022-Q3,MENA,Custom Integration,Professional Services,2,19980.71,39961.43,25290.01,14671.42,36.71
+2022,Q3,2022-Q3,MENA,Training & Onboarding,Professional Services,3,7655.91,22967.72,14531.31,8436.41,36.73
+2022,Q3,2022-Q3,MENA,Annual Support Plan,Support & Maintenance,6,9413.85,56483.1,24110.98,32372.12,57.31
+2022,Q3,2022-Q3,MENA,Premium SLA Contract,Support & Maintenance,6,17136.77,102820.64,42691.14,60129.5,58.48
+2022,Q3,2022-Q3,Europe,NovaCRM Enterprise,Cloud Software,4,44817.15,179268.62,44476.11,134792.51,75.19
+2022,Q3,2022-Q3,Europe,NovaCRM Professional,Cloud Software,3,16676.24,50028.73,12503.92,37524.81,75.01
+2022,Q3,2022-Q3,Europe,NovaERP Core,Cloud Software,4,74680.34,298721.34,73036.1,225685.24,75.55
+2022,Q3,2022-Q3,Europe,NovaERP Lite,Cloud Software,4,23876.15,95504.61,22016.08,73488.53,76.95
+2022,Q3,2022-Q3,Europe,Implementation Package,Professional Services,2,32434.69,64869.38,45275.67,19593.71,30.2
+2022,Q3,2022-Q3,Europe,Custom Integration,Professional Services,2,21168.26,42336.52,25693.03,16643.49,39.31
+2022,Q3,2022-Q3,Europe,Training & Onboarding,Professional Services,3,8290.3,24870.9,16412.81,8458.09,34.01
+2022,Q3,2022-Q3,Europe,Annual Support Plan,Support & Maintenance,5,9719.94,48599.72,18537.58,30062.14,61.86
+2022,Q3,2022-Q3,Europe,Premium SLA Contract,Support & Maintenance,7,16753.88,117277.14,44589.24,72687.9,61.98
+2022,Q3,2022-Q3,Asia-Pacific,NovaCRM Enterprise,Cloud Software,2,46598.88,93197.76,23541.16,69656.6,74.74
+2022,Q3,2022-Q3,Asia-Pacific,NovaCRM Professional,Cloud Software,2,18293.92,36587.85,9078.6,27509.25,75.19
+2022,Q3,2022-Q3,Asia-Pacific,NovaERP Core,Cloud Software,3,69560.24,208680.71,51341.82,157338.89,75.4
+2022,Q3,2022-Q3,Asia-Pacific,NovaERP Lite,Cloud Software,3,22158.86,66476.59,15773.37,50703.22,76.27
+2022,Q3,2022-Q3,Asia-Pacific,Implementation Package,Professional Services,2,36467.11,72934.21,46446.27,26487.94,36.32
+2022,Q3,2022-Q3,Asia-Pacific,Custom Integration,Professional Services,1,21925.2,21925.2,14043.27,7881.93,35.95
+2022,Q3,2022-Q3,Asia-Pacific,Training & Onboarding,Professional Services,1,7849.09,7849.09,5278.21,2570.88,32.75
+2022,Q3,2022-Q3,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,8679.02,43395.09,16585.87,26809.22,61.78
+2022,Q3,2022-Q3,Asia-Pacific,Premium SLA Contract,Support & Maintenance,4,18014.11,72056.44,26607.67,45448.77,63.07
+2022,Q4,2022-Q4,MENA,NovaCRM Enterprise,Cloud Software,4,48959.4,195837.58,46441.27,149396.31,76.29
+2022,Q4,2022-Q4,MENA,NovaCRM Professional,Cloud Software,6,16843.09,101058.56,23645.44,77413.12,76.6
+2022,Q4,2022-Q4,MENA,NovaERP Core,Cloud Software,5,72600.48,363002.41,95915.35,267087.06,73.58
+2022,Q4,2022-Q4,MENA,NovaERP Lite,Cloud Software,6,23029.86,138179.16,35473.82,102705.34,74.33
+2022,Q4,2022-Q4,MENA,Implementation Package,Professional Services,2,33039.03,66078.05,45674.4,20403.65,30.88
+2022,Q4,2022-Q4,MENA,Custom Integration,Professional Services,2,20082.18,40164.36,24886.65,15277.71,38.04
+2022,Q4,2022-Q4,MENA,Training & Onboarding,Professional Services,2,7881.33,15762.66,10381.86,5380.8,34.14
+2022,Q4,2022-Q4,MENA,Annual Support Plan,Support & Maintenance,6,9925.45,59552.68,25030.97,34521.71,57.97
+2022,Q4,2022-Q4,MENA,Premium SLA Contract,Support & Maintenance,6,16900.44,101402.66,39780.3,61622.36,60.77
+2022,Q4,2022-Q4,Europe,NovaCRM Enterprise,Cloud Software,5,45130.06,225650.29,57533.14,168117.15,74.5
+2022,Q4,2022-Q4,Europe,NovaCRM Professional,Cloud Software,5,17690.53,88452.64,21887.17,66565.47,75.26
+2022,Q4,2022-Q4,Europe,NovaERP Core,Cloud Software,4,75043.3,300173.18,78208.39,221964.79,73.95
+2022,Q4,2022-Q4,Europe,NovaERP Lite,Cloud Software,4,24726.48,98905.94,24676.76,74229.18,75.05
+2022,Q4,2022-Q4,Europe,Implementation Package,Professional Services,3,35699.24,107097.72,68780.53,38317.19,35.78
+2022,Q4,2022-Q4,Europe,Custom Integration,Professional Services,2,20686.64,41373.27,27071.77,14301.5,34.57
+2022,Q4,2022-Q4,Europe,Training & Onboarding,Professional Services,2,7978.81,15957.61,9773.92,6183.69,38.75
+2022,Q4,2022-Q4,Europe,Annual Support Plan,Support & Maintenance,7,10057.54,70402.77,28276.86,42125.91,59.84
+2022,Q4,2022-Q4,Europe,Premium SLA Contract,Support & Maintenance,5,16935.23,84676.15,31260.49,53415.66,63.08
+2022,Q4,2022-Q4,Asia-Pacific,NovaCRM Enterprise,Cloud Software,4,44047.81,176191.23,44587.07,131604.16,74.69
+2022,Q4,2022-Q4,Asia-Pacific,NovaCRM Professional,Cloud Software,3,17696.28,53088.84,13593.76,39495.08,74.39
+2022,Q4,2022-Q4,Asia-Pacific,NovaERP Core,Cloud Software,4,67029.35,268117.4,61784.93,206332.47,76.96
+2022,Q4,2022-Q4,Asia-Pacific,NovaERP Lite,Cloud Software,3,24840.07,74520.2,19744.54,54775.66,73.5
+2022,Q4,2022-Q4,Asia-Pacific,Implementation Package,Professional Services,2,34652.71,69305.43,46238.08,23067.35,33.28
+2022,Q4,2022-Q4,Asia-Pacific,Custom Integration,Professional Services,1,22817.56,22817.56,14638.65,8178.91,35.84
+2022,Q4,2022-Q4,Asia-Pacific,Training & Onboarding,Professional Services,2,8311.62,16623.24,10021.89,6601.35,39.71
+2022,Q4,2022-Q4,Asia-Pacific,Annual Support Plan,Support & Maintenance,4,9702.77,38811.07,14488.14,24322.93,62.67
+2022,Q4,2022-Q4,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16862.44,84312.21,33127.53,51184.68,60.71
+2023,Q1,2023-Q1,MENA,NovaCRM Enterprise,Cloud Software,4,45760.84,183043.37,47364.64,135678.73,74.12
+2023,Q1,2023-Q1,MENA,NovaCRM Professional,Cloud Software,4,17729.29,70917.17,17661.35,53255.82,75.1
+2023,Q1,2023-Q1,MENA,NovaERP Core,Cloud Software,5,74917.76,374588.81,97131.96,277456.85,74.07
+2023,Q1,2023-Q1,MENA,NovaERP Lite,Cloud Software,4,21712.26,86849.04,20886.37,65962.67,75.95
+2023,Q1,2023-Q1,MENA,Implementation Package,Professional Services,3,31769.99,95309.96,61915.46,33394.5,35.04
+2023,Q1,2023-Q1,MENA,Custom Integration,Professional Services,3,20903.0,62709.01,42527.67,20181.34,32.18
+2023,Q1,2023-Q1,MENA,Training & Onboarding,Professional Services,3,7745.8,23237.4,15655.77,7581.63,32.63
+2023,Q1,2023-Q1,MENA,Annual Support Plan,Support & Maintenance,8,9631.3,77050.4,30498.78,46551.62,60.42
+2023,Q1,2023-Q1,MENA,Premium SLA Contract,Support & Maintenance,7,18411.58,128881.03,54022.11,74858.92,58.08
+2023,Q1,2023-Q1,Europe,NovaCRM Enterprise,Cloud Software,5,45159.44,225797.22,57264.26,168532.96,74.64
+2023,Q1,2023-Q1,Europe,NovaCRM Professional,Cloud Software,4,16447.27,65789.09,17545.46,48243.63,73.33
+2023,Q1,2023-Q1,Europe,NovaERP Core,Cloud Software,4,75062.56,300250.25,74414.09,225836.16,75.22
+2023,Q1,2023-Q1,Europe,NovaERP Lite,Cloud Software,4,23550.84,94203.37,24956.15,69247.22,73.51
+2023,Q1,2023-Q1,Europe,Implementation Package,Professional Services,3,35734.45,107203.34,71452.47,35750.87,33.35
+2023,Q1,2023-Q1,Europe,Custom Integration,Professional Services,3,22602.35,67807.04,42309.25,25497.79,37.6
+2023,Q1,2023-Q1,Europe,Training & Onboarding,Professional Services,3,7932.04,23796.13,16674.36,7121.77,29.93
+2023,Q1,2023-Q1,Europe,Annual Support Plan,Support & Maintenance,8,8696.77,69574.2,28745.05,40829.15,58.68
+2023,Q1,2023-Q1,Europe,Premium SLA Contract,Support & Maintenance,8,16687.55,133500.43,53980.7,79519.73,59.57
+2023,Q1,2023-Q1,Asia-Pacific,NovaCRM Enterprise,Cloud Software,4,43444.41,173777.64,44816.7,128960.94,74.21
+2023,Q1,2023-Q1,Asia-Pacific,NovaCRM Professional,Cloud Software,3,18695.87,56087.61,15078.72,41008.89,73.12
+2023,Q1,2023-Q1,Asia-Pacific,NovaERP Core,Cloud Software,4,69921.51,279686.05,73971.84,205714.21,73.55
+2023,Q1,2023-Q1,Asia-Pacific,NovaERP Lite,Cloud Software,4,22748.76,90995.05,23945.95,67049.1,73.68
+2023,Q1,2023-Q1,Asia-Pacific,Implementation Package,Professional Services,2,34630.42,69260.83,43074.76,26186.07,37.81
+2023,Q1,2023-Q1,Asia-Pacific,Custom Integration,Professional Services,2,20053.95,40107.89,26888.89,13219.0,32.96
+2023,Q1,2023-Q1,Asia-Pacific,Training & Onboarding,Professional Services,2,8574.08,17148.16,10371.16,6777.0,39.52
+2023,Q1,2023-Q1,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,9416.87,47084.34,19709.8,27374.54,58.14
+2023,Q1,2023-Q1,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,17889.91,89449.53,37989.45,51460.08,57.53
+2023,Q2,2023-Q2,MENA,NovaCRM Enterprise,Cloud Software,5,44877.31,224386.54,51827.91,172558.63,76.9
+2023,Q2,2023-Q2,MENA,NovaCRM Professional,Cloud Software,6,16257.43,97544.56,25848.14,71696.42,73.5
+2023,Q2,2023-Q2,MENA,NovaERP Core,Cloud Software,5,74941.93,374709.66,98155.69,276553.97,73.8
+2023,Q2,2023-Q2,MENA,NovaERP Lite,Cloud Software,6,22862.56,137175.38,35759.91,101415.47,73.93
+2023,Q2,2023-Q2,MENA,Implementation Package,Professional Services,3,34019.35,102058.04,67691.07,34366.97,33.67
+2023,Q2,2023-Q2,MENA,Custom Integration,Professional Services,3,23047.48,69142.43,46871.68,22270.75,32.21
+2023,Q2,2023-Q2,MENA,Training & Onboarding,Professional Services,3,8187.23,24561.69,16571.98,7989.71,32.53
+2023,Q2,2023-Q2,MENA,Annual Support Plan,Support & Maintenance,7,8799.08,61593.58,24064.35,37529.23,60.93
+2023,Q2,2023-Q2,MENA,Premium SLA Contract,Support & Maintenance,7,17000.03,119000.22,45571.24,73428.98,61.7
+2023,Q2,2023-Q2,Europe,NovaCRM Enterprise,Cloud Software,4,43328.69,173314.77,46709.87,126604.9,73.05
+2023,Q2,2023-Q2,Europe,NovaCRM Professional,Cloud Software,4,17237.68,68950.73,17733.15,51217.58,74.28
+2023,Q2,2023-Q2,Europe,NovaERP Core,Cloud Software,4,75059.58,300238.32,78498.45,221739.87,73.85
+2023,Q2,2023-Q2,Europe,NovaERP Lite,Cloud Software,4,23103.29,92413.16,24504.71,67908.45,73.48
+2023,Q2,2023-Q2,Europe,Implementation Package,Professional Services,3,33953.86,101861.57,67411.46,34450.11,33.82
+2023,Q2,2023-Q2,Europe,Custom Integration,Professional Services,2,23070.86,46141.71,28704.47,17437.24,37.79
+2023,Q2,2023-Q2,Europe,Training & Onboarding,Professional Services,3,8478.3,25434.9,16817.67,8617.23,33.88
+2023,Q2,2023-Q2,Europe,Annual Support Plan,Support & Maintenance,7,8972.16,62805.15,23821.85,38983.3,62.07
+2023,Q2,2023-Q2,Europe,Premium SLA Contract,Support & Maintenance,6,16703.38,100220.3,41881.4,58338.9,58.21
+2023,Q2,2023-Q2,Asia-Pacific,NovaCRM Enterprise,Cloud Software,3,43616.47,130849.4,35167.62,95681.78,73.12
+2023,Q2,2023-Q2,Asia-Pacific,NovaCRM Professional,Cloud Software,4,18704.93,74819.72,20186.08,54633.64,73.02
+2023,Q2,2023-Q2,Asia-Pacific,NovaERP Core,Cloud Software,3,69079.41,207238.24,53950.24,153288.0,73.97
+2023,Q2,2023-Q2,Asia-Pacific,NovaERP Lite,Cloud Software,4,22154.03,88616.1,23273.54,65342.56,73.74
+2023,Q2,2023-Q2,Asia-Pacific,Implementation Package,Professional Services,1,32675.04,32675.04,21364.42,11310.62,34.62
+2023,Q2,2023-Q2,Asia-Pacific,Custom Integration,Professional Services,2,21714.28,43428.57,26383.49,17045.08,39.25
+2023,Q2,2023-Q2,Asia-Pacific,Training & Onboarding,Professional Services,2,7988.64,15977.28,9769.62,6207.66,38.85
+2023,Q2,2023-Q2,Asia-Pacific,Annual Support Plan,Support & Maintenance,6,10016.14,60096.83,25431.55,34665.28,57.68
+2023,Q2,2023-Q2,Asia-Pacific,Premium SLA Contract,Support & Maintenance,6,17969.15,107814.92,43476.89,64338.03,59.67
+2023,Q3,2023-Q3,MENA,NovaCRM Enterprise,Cloud Software,4,46140.86,184563.45,45200.98,139362.47,75.51
+2023,Q3,2023-Q3,MENA,NovaCRM Professional,Cloud Software,4,18153.23,72612.94,18141.26,54471.68,75.02
+2023,Q3,2023-Q3,MENA,NovaERP Core,Cloud Software,4,67177.98,268711.91,69147.73,199564.18,74.27
+2023,Q3,2023-Q3,MENA,NovaERP Lite,Cloud Software,4,24664.34,98657.38,24645.19,74012.19,75.02
+2023,Q3,2023-Q3,MENA,Implementation Package,Professional Services,3,34610.14,103830.42,70995.8,32834.62,31.62
+2023,Q3,2023-Q3,MENA,Custom Integration,Professional Services,3,22037.45,66112.36,43424.99,22687.37,34.32
+2023,Q3,2023-Q3,MENA,Training & Onboarding,Professional Services,3,8770.25,26310.76,17915.85,8394.91,31.91
+2023,Q3,2023-Q3,MENA,Annual Support Plan,Support & Maintenance,8,9864.84,78918.7,33422.61,45496.09,57.65
+2023,Q3,2023-Q3,MENA,Premium SLA Contract,Support & Maintenance,8,18459.94,147679.49,60938.2,86741.29,58.74
+2023,Q3,2023-Q3,Europe,NovaCRM Enterprise,Cloud Software,5,47654.0,238270.01,61976.09,176293.92,73.99
+2023,Q3,2023-Q3,Europe,NovaCRM Professional,Cloud Software,4,18578.35,74313.4,19683.67,54629.73,73.51
+2023,Q3,2023-Q3,Europe,NovaERP Core,Cloud Software,4,73718.82,294875.28,69341.34,225533.94,76.48
+2023,Q3,2023-Q3,Europe,NovaERP Lite,Cloud Software,4,24276.63,97106.52,22958.93,74147.59,76.36
+2023,Q3,2023-Q3,Europe,Implementation Package,Professional Services,3,35868.7,107606.11,70027.54,37578.57,34.92
+2023,Q3,2023-Q3,Europe,Custom Integration,Professional Services,2,20747.23,41494.45,27475.98,14018.47,33.78
+2023,Q3,2023-Q3,Europe,Training & Onboarding,Professional Services,3,8455.56,25366.69,15854.68,9512.01,37.5
+2023,Q3,2023-Q3,Europe,Annual Support Plan,Support & Maintenance,7,9417.58,65923.05,27549.91,38373.14,58.21
+2023,Q3,2023-Q3,Europe,Premium SLA Contract,Support & Maintenance,6,18254.78,109528.65,44100.73,65427.92,59.74
+2023,Q3,2023-Q3,Asia-Pacific,NovaCRM Enterprise,Cloud Software,4,45661.48,182645.92,46630.39,136015.53,74.47
+2023,Q3,2023-Q3,Asia-Pacific,NovaCRM Professional,Cloud Software,4,16476.78,65907.11,17629.44,48277.67,73.25
+2023,Q3,2023-Q3,Asia-Pacific,NovaERP Core,Cloud Software,4,65532.64,262130.56,63445.7,198684.86,75.8
+2023,Q3,2023-Q3,Asia-Pacific,NovaERP Lite,Cloud Software,4,21842.46,87369.85,22129.63,65240.22,74.67
+2023,Q3,2023-Q3,Asia-Pacific,Implementation Package,Professional Services,2,34759.81,69519.61,41903.44,27616.17,39.72
+2023,Q3,2023-Q3,Asia-Pacific,Custom Integration,Professional Services,2,23012.51,46025.03,32160.6,13864.43,30.12
+2023,Q3,2023-Q3,Asia-Pacific,Training & Onboarding,Professional Services,2,7815.86,15631.72,10580.48,5051.24,32.31
+2023,Q3,2023-Q3,Asia-Pacific,Annual Support Plan,Support & Maintenance,4,8671.86,34687.43,13483.39,21204.04,61.13
+2023,Q3,2023-Q3,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,18280.1,91400.5,37632.41,53768.09,58.83
+2023,Q4,2023-Q4,MENA,NovaCRM Enterprise,Cloud Software,6,45170.11,271020.67,73144.41,197876.26,73.01
+2023,Q4,2023-Q4,MENA,NovaCRM Professional,Cloud Software,6,17418.74,104512.47,24721.9,79790.57,76.35
+2023,Q4,2023-Q4,MENA,NovaERP Core,Cloud Software,7,72291.77,506042.38,120858.5,385183.88,76.12
+2023,Q4,2023-Q4,MENA,NovaERP Lite,Cloud Software,5,24049.8,120248.99,30805.44,89443.55,74.38
+2023,Q4,2023-Q4,MENA,Implementation Package,Professional Services,3,36492.03,109476.1,67186.58,42289.52,38.63
+2023,Q4,2023-Q4,MENA,Custom Integration,Professional Services,3,22913.93,68741.8,44108.29,24633.51,35.83
+2023,Q4,2023-Q4,MENA,Training & Onboarding,Professional Services,3,8156.93,24470.8,15331.41,9139.39,37.35
+2023,Q4,2023-Q4,MENA,Annual Support Plan,Support & Maintenance,9,9229.44,83064.97,35321.08,47743.89,57.48
+2023,Q4,2023-Q4,MENA,Premium SLA Contract,Support & Maintenance,7,16775.38,117427.68,43447.37,73980.31,63.0
+2023,Q4,2023-Q4,Europe,NovaCRM Enterprise,Cloud Software,6,45853.39,275120.34,72789.78,202330.56,73.54
+2023,Q4,2023-Q4,Europe,NovaCRM Professional,Cloud Software,6,18814.12,112884.73,26801.21,86083.52,76.26
+2023,Q4,2023-Q4,Europe,NovaERP Core,Cloud Software,7,73187.25,512310.72,133629.53,378681.19,73.92
+2023,Q4,2023-Q4,Europe,NovaERP Lite,Cloud Software,7,24339.69,170377.8,43454.66,126923.14,74.5
+2023,Q4,2023-Q4,Europe,Implementation Package,Professional Services,2,31670.76,63341.52,43944.33,19397.19,30.62
+2023,Q4,2023-Q4,Europe,Custom Integration,Professional Services,3,22428.57,67285.72,43606.42,23679.3,35.19
+2023,Q4,2023-Q4,Europe,Training & Onboarding,Professional Services,2,7809.61,15619.22,10453.93,5165.29,33.07
+2023,Q4,2023-Q4,Europe,Annual Support Plan,Support & Maintenance,7,8928.76,62501.29,24966.89,37534.4,60.05
+2023,Q4,2023-Q4,Europe,Premium SLA Contract,Support & Maintenance,6,17771.32,106627.94,41074.74,65553.2,61.48
+2023,Q4,2023-Q4,Asia-Pacific,NovaCRM Enterprise,Cloud Software,5,45434.61,227173.03,56386.35,170786.68,75.18
+2023,Q4,2023-Q4,Asia-Pacific,NovaCRM Professional,Cloud Software,3,16395.61,49186.82,12085.19,37101.63,75.43
+2023,Q4,2023-Q4,Asia-Pacific,NovaERP Core,Cloud Software,4,71280.22,285120.89,68904.17,216216.72,75.83
+2023,Q4,2023-Q4,Asia-Pacific,NovaERP Lite,Cloud Software,5,24696.44,123482.2,32252.81,91229.39,73.88
+2023,Q4,2023-Q4,Asia-Pacific,Implementation Package,Professional Services,2,34022.66,68045.32,41433.66,26611.66,39.11
+2023,Q4,2023-Q4,Asia-Pacific,Custom Integration,Professional Services,2,23055.99,46111.97,28258.32,17853.65,38.72
+2023,Q4,2023-Q4,Asia-Pacific,Training & Onboarding,Professional Services,2,8438.15,16876.3,11324.95,5551.35,32.89
+2023,Q4,2023-Q4,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,8654.07,43270.35,16827.56,26442.79,61.11
+2023,Q4,2023-Q4,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16437.24,82186.2,32088.79,50097.41,60.96
+2024,Q1,2024-Q1,MENA,NovaCRM Enterprise,Cloud Software,4,39850.33,159401.32,39193.11,120208.21,75.41
+2024,Q1,2024-Q1,MENA,NovaCRM Professional,Cloud Software,4,16088.05,64352.18,16575.74,47776.44,74.24
+2024,Q1,2024-Q1,MENA,NovaERP Core,Cloud Software,5,60913.41,304567.03,72090.8,232476.23,76.33
+2024,Q1,2024-Q1,MENA,NovaERP Lite,Cloud Software,4,21665.66,86662.65,22381.41,64281.24,74.17
+2024,Q1,2024-Q1,MENA,Implementation Package,Professional Services,2,32959.77,65919.53,39776.17,26143.36,39.66
+2024,Q1,2024-Q1,MENA,Custom Integration,Professional Services,3,20067.91,60203.74,41455.14,18748.6,31.14
+2024,Q1,2024-Q1,MENA,Training & Onboarding,Professional Services,3,7855.91,23567.73,14925.51,8642.22,36.67
+2024,Q1,2024-Q1,MENA,Annual Support Plan,Support & Maintenance,8,7971.98,63775.87,27121.85,36654.02,57.47
+2024,Q1,2024-Q1,MENA,Premium SLA Contract,Support & Maintenance,7,16672.48,116707.34,46326.79,70380.55,60.31
+2024,Q1,2024-Q1,Europe,NovaCRM Enterprise,Cloud Software,4,42644.75,170579.01,44224.92,126354.09,74.07
+2024,Q1,2024-Q1,Europe,NovaCRM Professional,Cloud Software,3,14901.22,44703.67,10723.7,33979.97,76.01
+2024,Q1,2024-Q1,Europe,NovaERP Core,Cloud Software,3,67199.89,201599.68,48135.67,153464.01,76.12
+2024,Q1,2024-Q1,Europe,NovaERP Lite,Cloud Software,5,20731.11,103655.57,24595.88,79059.69,76.27
+2024,Q1,2024-Q1,Europe,Implementation Package,Professional Services,3,31697.12,95091.36,61791.54,33299.82,35.02
+2024,Q1,2024-Q1,Europe,Custom Integration,Professional Services,3,20096.92,60290.75,37486.33,22804.42,37.82
+2024,Q1,2024-Q1,Europe,Training & Onboarding,Professional Services,3,8047.15,24141.44,16069.36,8072.08,33.44
+2024,Q1,2024-Q1,Europe,Annual Support Plan,Support & Maintenance,5,8720.92,43604.62,16247.98,27356.64,62.74
+2024,Q1,2024-Q1,Europe,Premium SLA Contract,Support & Maintenance,5,15362.98,76814.89,30542.2,46272.69,60.24
+2024,Q1,2024-Q1,Asia-Pacific,NovaCRM Enterprise,Cloud Software,4,43897.53,175590.14,45602.21,129987.93,74.03
+2024,Q1,2024-Q1,Asia-Pacific,NovaCRM Professional,Cloud Software,3,15569.49,46708.46,11436.17,35272.29,75.52
+2024,Q1,2024-Q1,Asia-Pacific,NovaERP Core,Cloud Software,4,59415.42,237661.69,62904.6,174757.09,73.53
+2024,Q1,2024-Q1,Asia-Pacific,NovaERP Lite,Cloud Software,3,21048.48,63145.44,16355.32,46790.12,74.1
+2024,Q1,2024-Q1,Asia-Pacific,Implementation Package,Professional Services,2,32674.08,65348.15,45199.55,20148.6,30.83
+2024,Q1,2024-Q1,Asia-Pacific,Custom Integration,Professional Services,2,18831.73,37663.46,24842.99,12820.47,34.04
+2024,Q1,2024-Q1,Asia-Pacific,Training & Onboarding,Professional Services,2,7202.78,14405.56,9547.84,4857.72,33.72
+2024,Q1,2024-Q1,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,8786.93,43934.63,16537.89,27396.74,62.36
+2024,Q1,2024-Q1,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16887.14,84435.68,32043.32,52392.36,62.05
+2024,Q2,2024-Q2,MENA,NovaCRM Enterprise,Cloud Software,4,45421.51,181686.02,43103.02,138583.0,76.28
+2024,Q2,2024-Q2,MENA,NovaCRM Professional,Cloud Software,5,15911.93,79559.65,19085.5,60474.15,76.01
+2024,Q2,2024-Q2,MENA,NovaERP Core,Cloud Software,5,63208.06,316040.29,79197.39,236842.9,74.94
+2024,Q2,2024-Q2,MENA,NovaERP Lite,Cloud Software,4,21530.01,86120.03,20370.91,65749.12,76.35
+2024,Q2,2024-Q2,MENA,Implementation Package,Professional Services,2,33110.83,66221.65,41378.32,24843.33,37.52
+2024,Q2,2024-Q2,MENA,Custom Integration,Professional Services,3,18970.04,56910.13,38610.18,18299.95,32.16
+2024,Q2,2024-Q2,MENA,Training & Onboarding,Professional Services,2,8041.65,16083.3,10376.85,5706.45,35.48
+2024,Q2,2024-Q2,MENA,Annual Support Plan,Support & Maintenance,6,7963.72,47782.34,18103.03,29679.31,62.11
+2024,Q2,2024-Q2,MENA,Premium SLA Contract,Support & Maintenance,7,15548.59,108840.11,45826.97,63013.14,57.9
+2024,Q2,2024-Q2,Europe,NovaCRM Enterprise,Cloud Software,4,40911.98,163647.91,41678.8,121969.11,74.53
+2024,Q2,2024-Q2,Europe,NovaCRM Professional,Cloud Software,4,15150.88,60603.51,14345.14,46258.37,76.33
+2024,Q2,2024-Q2,Europe,NovaERP Core,Cloud Software,3,65932.72,197798.17,50745.55,147052.62,74.34
+2024,Q2,2024-Q2,Europe,NovaERP Lite,Cloud Software,4,22313.81,89255.25,23405.12,65850.13,73.78
+2024,Q2,2024-Q2,Europe,Implementation Package,Professional Services,2,32650.63,65301.27,40448.1,24853.17,38.06
+2024,Q2,2024-Q2,Europe,Custom Integration,Professional Services,2,18811.48,37622.97,22721.9,14901.07,39.61
+2024,Q2,2024-Q2,Europe,Training & Onboarding,Professional Services,2,8004.95,16009.9,9639.43,6370.47,39.79
+2024,Q2,2024-Q2,Europe,Annual Support Plan,Support & Maintenance,5,8436.34,42181.72,18043.99,24137.73,57.22
+2024,Q2,2024-Q2,Europe,Premium SLA Contract,Support & Maintenance,6,15946.93,95681.58,35465.4,60216.18,62.93
+2024,Q2,2024-Q2,Asia-Pacific,NovaCRM Enterprise,Cloud Software,3,45516.57,136549.72,36677.9,99871.82,73.14
+2024,Q2,2024-Q2,Asia-Pacific,NovaCRM Professional,Cloud Software,2,16987.24,33974.48,8682.68,25291.8,74.44
+2024,Q2,2024-Q2,Asia-Pacific,NovaERP Core,Cloud Software,4,63296.37,253185.46,63454.31,189731.15,74.94
+2024,Q2,2024-Q2,Asia-Pacific,NovaERP Lite,Cloud Software,3,21760.62,65281.85,15379.49,49902.36,76.44
+2024,Q2,2024-Q2,Asia-Pacific,Implementation Package,Professional Services,1,30101.08,30101.08,20206.46,9894.62,32.87
+2024,Q2,2024-Q2,Asia-Pacific,Custom Integration,Professional Services,1,19966.02,19966.02,13953.67,6012.35,30.11
+2024,Q2,2024-Q2,Asia-Pacific,Training & Onboarding,Professional Services,1,7713.23,7713.23,4968.48,2744.75,35.58
+2024,Q2,2024-Q2,Asia-Pacific,Annual Support Plan,Support & Maintenance,6,8093.08,48558.5,20022.03,28536.47,58.77
+2024,Q2,2024-Q2,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16970.4,84851.99,34935.93,49916.06,58.83
+2024,Q3,2024-Q3,MENA,NovaCRM Enterprise,Cloud Software,4,43215.37,172861.47,45766.15,127095.32,73.52
+2024,Q3,2024-Q3,MENA,NovaCRM Professional,Cloud Software,5,14831.11,74155.53,19817.17,54338.36,73.28
+2024,Q3,2024-Q3,MENA,NovaERP Core,Cloud Software,5,65372.17,326860.83,77997.82,248863.01,76.14
+2024,Q3,2024-Q3,MENA,NovaERP Lite,Cloud Software,5,20908.86,104544.28,26768.49,77775.79,74.4
+2024,Q3,2024-Q3,MENA,Implementation Package,Professional Services,2,31693.2,63386.39,44493.38,18893.01,29.81
+2024,Q3,2024-Q3,MENA,Custom Integration,Professional Services,2,20834.72,41669.44,26681.71,14987.73,35.97
+2024,Q3,2024-Q3,MENA,Training & Onboarding,Professional Services,3,7834.54,23503.61,15441.16,8062.45,34.3
+2024,Q3,2024-Q3,MENA,Annual Support Plan,Support & Maintenance,8,8968.39,71747.1,28258.67,43488.43,60.61
+2024,Q3,2024-Q3,MENA,Premium SLA Contract,Support & Maintenance,6,16322.17,97933.01,41102.69,56830.32,58.03
+2024,Q3,2024-Q3,Europe,NovaCRM Enterprise,Cloud Software,5,44338.36,221691.79,54851.72,166840.07,75.26
+2024,Q3,2024-Q3,Europe,NovaCRM Professional,Cloud Software,5,15041.29,75206.45,18935.45,56271.0,74.82
+2024,Q3,2024-Q3,Europe,NovaERP Core,Cloud Software,3,62078.12,186234.37,45563.81,140670.56,75.53
+2024,Q3,2024-Q3,Europe,NovaERP Lite,Cloud Software,4,21849.86,87399.43,21460.26,65939.17,75.45
+2024,Q3,2024-Q3,Europe,Implementation Package,Professional Services,2,29780.83,59561.65,37929.94,21631.71,36.32
+2024,Q3,2024-Q3,Europe,Custom Integration,Professional Services,2,18249.34,36498.68,24116.82,12381.86,33.92
+2024,Q3,2024-Q3,Europe,Training & Onboarding,Professional Services,3,7654.54,22963.61,14839.16,8124.45,35.38
+2024,Q3,2024-Q3,Europe,Annual Support Plan,Support & Maintenance,6,8949.44,53696.64,21544.23,32152.41,59.88
+2024,Q3,2024-Q3,Europe,Premium SLA Contract,Support & Maintenance,6,14820.0,88920.01,34664.56,54255.45,61.02
+2024,Q3,2024-Q3,Asia-Pacific,NovaCRM Enterprise,Cloud Software,3,41848.65,125545.96,31789.1,93756.86,74.68
+2024,Q3,2024-Q3,Asia-Pacific,NovaCRM Professional,Cloud Software,3,16182.5,48547.49,12651.25,35896.24,73.94
+2024,Q3,2024-Q3,Asia-Pacific,NovaERP Core,Cloud Software,3,65761.63,197284.9,52915.94,144368.96,73.18
+2024,Q3,2024-Q3,Asia-Pacific,NovaERP Lite,Cloud Software,2,20290.83,40581.65,9346.06,31235.59,76.97
+2024,Q3,2024-Q3,Asia-Pacific,Implementation Package,Professional Services,2,32786.04,65572.08,40872.53,24699.55,37.67
+2024,Q3,2024-Q3,Asia-Pacific,Custom Integration,Professional Services,2,18212.36,36424.73,25321.79,11102.94,30.48
+2024,Q3,2024-Q3,Asia-Pacific,Training & Onboarding,Professional Services,2,7082.07,14164.14,9185.88,4978.26,35.15
+2024,Q3,2024-Q3,Asia-Pacific,Annual Support Plan,Support & Maintenance,4,8227.52,32910.09,12758.14,20151.95,61.23
+2024,Q3,2024-Q3,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16021.64,80108.19,31075.86,49032.33,61.21
+2024,Q4,2024-Q4,MENA,NovaCRM Enterprise,Cloud Software,6,43828.78,262972.68,63351.42,199621.26,75.91
+2024,Q4,2024-Q4,MENA,NovaCRM Professional,Cloud Software,5,15045.21,75226.07,17847.08,57378.99,76.28
+2024,Q4,2024-Q4,MENA,NovaERP Core,Cloud Software,6,60738.26,364429.58,91474.21,272955.37,74.9
+2024,Q4,2024-Q4,MENA,NovaERP Lite,Cloud Software,6,20013.46,120080.74,30343.5,89737.24,74.73
+2024,Q4,2024-Q4,MENA,Implementation Package,Professional Services,2,33081.32,66162.63,42892.49,23270.14,35.17
+2024,Q4,2024-Q4,MENA,Custom Integration,Professional Services,3,19613.65,58840.94,35452.54,23388.4,39.75
+2024,Q4,2024-Q4,MENA,Training & Onboarding,Professional Services,3,8021.3,24063.9,15895.83,8168.07,33.94
+2024,Q4,2024-Q4,MENA,Annual Support Plan,Support & Maintenance,8,8975.49,71803.92,27471.97,44331.95,61.74
+2024,Q4,2024-Q4,MENA,Premium SLA Contract,Support & Maintenance,6,16189.7,97138.17,38302.15,58836.02,60.57
+2024,Q4,2024-Q4,Europe,NovaCRM Enterprise,Cloud Software,6,44976.14,269856.87,65882.01,203974.86,75.59
+2024,Q4,2024-Q4,Europe,NovaCRM Professional,Cloud Software,5,16586.43,82932.15,19986.0,62946.15,75.9
+2024,Q4,2024-Q4,Europe,NovaERP Core,Cloud Software,6,63006.19,378037.14,97042.89,280994.25,74.33
+2024,Q4,2024-Q4,Europe,NovaERP Lite,Cloud Software,4,21626.44,86505.76,21459.55,65046.21,75.19
+2024,Q4,2024-Q4,Europe,Implementation Package,Professional Services,3,29464.46,88393.39,59633.26,28760.13,32.54
+2024,Q4,2024-Q4,Europe,Custom Integration,Professional Services,3,18659.88,55979.63,34033.06,21946.57,39.2
+2024,Q4,2024-Q4,Europe,Training & Onboarding,Professional Services,2,7679.38,15358.76,10154.26,5204.5,33.89
+2024,Q4,2024-Q4,Europe,Annual Support Plan,Support & Maintenance,6,8161.47,48968.82,19245.63,29723.19,60.7
+2024,Q4,2024-Q4,Europe,Premium SLA Contract,Support & Maintenance,7,15922.43,111457.04,48062.31,63394.73,56.88
+2024,Q4,2024-Q4,Asia-Pacific,NovaCRM Enterprise,Cloud Software,3,43697.7,131093.11,32271.55,98821.56,75.38
+2024,Q4,2024-Q4,Asia-Pacific,NovaCRM Professional,Cloud Software,4,16439.18,65756.72,16945.34,48811.38,74.23
+2024,Q4,2024-Q4,Asia-Pacific,NovaERP Core,Cloud Software,5,60241.77,301208.85,70532.39,230676.46,76.58
+2024,Q4,2024-Q4,Asia-Pacific,NovaERP Lite,Cloud Software,4,21484.57,85938.27,20708.24,65230.03,75.9
+2024,Q4,2024-Q4,Asia-Pacific,Implementation Package,Professional Services,1,29089.75,29089.75,20100.9,8988.85,30.9
+2024,Q4,2024-Q4,Asia-Pacific,Custom Integration,Professional Services,2,18964.84,37929.69,23576.04,14353.65,37.84
+2024,Q4,2024-Q4,Asia-Pacific,Training & Onboarding,Professional Services,2,7046.71,14093.43,9188.67,4904.76,34.8
+2024,Q4,2024-Q4,Asia-Pacific,Annual Support Plan,Support & Maintenance,4,8870.84,35483.38,13588.63,21894.75,61.7
+2024,Q4,2024-Q4,Asia-Pacific,Premium SLA Contract,Support & Maintenance,5,16819.39,84096.93,34450.82,49646.11,59.03
+2025,Q1,2025-Q1,MENA,NovaCRM Enterprise,Cloud Software,5,43641.12,218205.61,53093.81,165111.8,75.67
+2025,Q1,2025-Q1,MENA,NovaCRM Professional,Cloud Software,5,17450.51,87252.53,22377.97,64874.56,74.35
+2025,Q1,2025-Q1,MENA,NovaERP Core,Cloud Software,5,68094.62,340473.08,84644.41,255828.67,75.14
+2025,Q1,2025-Q1,MENA,NovaERP Lite,Cloud Software,4,22334.56,89338.24,23969.9,65368.34,73.17
+2025,Q1,2025-Q1,MENA,Implementation Package,Professional Services,2,32973.52,65947.03,40814.43,25132.6,38.11
+2025,Q1,2025-Q1,MENA,Custom Integration,Professional Services,3,19551.42,58654.26,37822.53,20831.73,35.52
+2025,Q1,2025-Q1,MENA,Training & Onboarding,Professional Services,3,7745.89,23237.68,15503.04,7734.64,33.28
+2025,Q1,2025-Q1,MENA,Annual Support Plan,Support & Maintenance,8,9249.08,73992.65,28340.45,45652.2,61.7
+2025,Q1,2025-Q1,MENA,Premium SLA Contract,Support & Maintenance,7,16086.91,112608.4,48592.66,64015.74,56.85
+2025,Q1,2025-Q1,Europe,NovaCRM Enterprise,Cloud Software,5,44572.61,222863.07,58764.83,164098.24,73.63
+2025,Q1,2025-Q1,Europe,NovaCRM Professional,Cloud Software,4,16850.21,67400.84,15742.48,51658.36,76.64
+2025,Q1,2025-Q1,Europe,NovaERP Core,Cloud Software,5,64187.58,320937.92,84420.38,236517.54,73.7
+2025,Q1,2025-Q1,Europe,NovaERP Lite,Cloud Software,5,22650.89,113254.44,26212.33,87042.11,76.86
+2025,Q1,2025-Q1,Europe,Implementation Package,Professional Services,2,31628.8,63257.61,40197.31,23060.3,36.45
+2025,Q1,2025-Q1,Europe,Custom Integration,Professional Services,2,21215.18,42430.35,27817.14,14613.21,34.44
+2025,Q1,2025-Q1,Europe,Training & Onboarding,Professional Services,2,7783.69,15567.38,10033.32,5534.06,35.55
+2025,Q1,2025-Q1,Europe,Annual Support Plan,Support & Maintenance,7,8893.55,62254.83,26572.92,35681.91,57.32
+2025,Q1,2025-Q1,Europe,Premium SLA Contract,Support & Maintenance,6,17447.3,104683.78,44227.98,60455.8,57.75
+2025,Q1,2025-Q1,Asia-Pacific,NovaCRM Enterprise,Cloud Software,3,46260.17,138780.51,32565.49,106215.02,76.53
+2025,Q1,2025-Q1,Asia-Pacific,NovaCRM Professional,Cloud Software,4,16456.61,65826.44,17451.84,48374.6,73.49
+2025,Q1,2025-Q1,Asia-Pacific,NovaERP Core,Cloud Software,4,68582.4,274329.59,71764.95,202564.64,73.84
+2025,Q1,2025-Q1,Asia-Pacific,NovaERP Lite,Cloud Software,3,21294.79,63884.36,15723.17,48161.19,75.39
+2025,Q1,2025-Q1,Asia-Pacific,Implementation Package,Professional Services,2,32989.1,65978.19,41829.8,24148.39,36.6
+2025,Q1,2025-Q1,Asia-Pacific,Custom Integration,Professional Services,2,20629.12,41258.25,28201.58,13056.67,31.65
+2025,Q1,2025-Q1,Asia-Pacific,Training & Onboarding,Professional Services,2,8139.44,16278.88,11297.0,4981.88,30.6
+2025,Q1,2025-Q1,Asia-Pacific,Annual Support Plan,Support & Maintenance,5,8971.8,44859.01,18703.87,26155.14,58.31
+2025,Q1,2025-Q1,Asia-Pacific,Premium SLA Contract,Support & Maintenance,4,16654.16,66616.63,26214.61,40402.02,60.65
