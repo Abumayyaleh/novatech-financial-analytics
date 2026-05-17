@@ -1,0 +1,356 @@
+-- ============================================================
+-- NOVATECH SOLUTIONS | FINANCIAL PERFORMANCE ANALYTICS
+-- Script 02: Financial Business Analysis
+-- Author: Mohammad
+-- Dataset: Synthetic | Generated for portfolio demonstration
+-- Tool: PostgreSQL via Valentina Studio
+-- Database: Finance | Schema: novatech
+-- ============================================================
+
+
+-- ============================================================
+-- SECTION 4: REVENUE & GROWTH ANALYSIS
+-- ============================================================
+
+-- ── ANALYSIS 1: Annual revenue trend with YoY growth
+SELECT
+    fiscal_year,
+    ROUND(SUM(total_revenue_usd), 2)                        AS annual_revenue,
+    ROUND(SUM(gross_profit_usd), 2)                         AS annual_gross_profit,
+    ROUND(AVG(gross_margin_pct), 2)                         AS avg_gross_margin_pct,
+    ROUND(
+        (SUM(total_revenue_usd) - LAG(SUM(total_revenue_usd))
+            OVER (ORDER BY fiscal_year))
+        / LAG(SUM(total_revenue_usd))
+            OVER (ORDER BY fiscal_year) * 100
+    , 2)                                                     AS yoy_revenue_growth_pct
+FROM novatech.pnl_summary
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+
+-- ── ANALYSIS 2: Quarterly revenue — spot seasonality patterns
+SELECT
+    quarter,
+    ROUND(AVG(total_revenue_usd), 2)                        AS avg_quarterly_revenue,
+    ROUND(MIN(total_revenue_usd), 2)                        AS min_revenue,
+    ROUND(MAX(total_revenue_usd), 2)                        AS max_revenue,
+    COUNT(*)                                                 AS years_observed
+FROM novatech.pnl_summary
+GROUP BY quarter
+ORDER BY quarter;
+
+-- ── ANALYSIS 3: Revenue by product category — annual breakdown
+SELECT
+    fiscal_year,
+    product_category,
+    ROUND(SUM(revenue_usd), 2)                              AS total_revenue,
+    ROUND(SUM(deals_closed), 0)                             AS total_deals,
+    ROUND(AVG(avg_deal_value_usd), 2)                       AS avg_deal_value,
+    ROUND(AVG(gross_margin_pct), 2)                         AS avg_gross_margin_pct
+FROM novatech.revenue_by_product_region
+GROUP BY fiscal_year, product_category
+ORDER BY fiscal_year, product_category;
+
+-- ── ANALYSIS 4: The 2024 deal value collapse
+-- Was 2024 revenue drop driven by fewer deals or lower prices?
+SELECT
+    fiscal_year,
+    product_category,
+    SUM(deals_closed)                                       AS total_deals,
+    ROUND(AVG(avg_deal_value_usd), 2)                       AS avg_deal_value,
+    ROUND(SUM(revenue_usd), 2)                              AS total_revenue,
+    ROUND(
+        (AVG(avg_deal_value_usd) - LAG(AVG(avg_deal_value_usd))
+            OVER (PARTITION BY product_category ORDER BY fiscal_year))
+        / LAG(AVG(avg_deal_value_usd))
+            OVER (PARTITION BY product_category ORDER BY fiscal_year) * 100
+    , 2)                                                     AS deal_value_change_pct
+FROM novatech.revenue_by_product_region
+GROUP BY fiscal_year, product_category
+ORDER BY product_category, fiscal_year;
+
+-- ── ANALYSIS 5: Regional revenue performance
+SELECT
+    fiscal_year,
+    region,
+    ROUND(SUM(revenue_usd), 2)                              AS total_revenue,
+    ROUND(AVG(gross_margin_pct), 2)                         AS avg_gross_margin_pct,
+    SUM(deals_closed)                                       AS total_deals
+FROM novatech.revenue_by_product_region
+GROUP BY fiscal_year, region
+ORDER BY region, fiscal_year;
+
+
+-- ============================================================
+-- SECTION 5: MARGIN & PROFITABILITY ANALYSIS
+-- ============================================================
+
+-- ── ANALYSIS 1: Full margin waterfall by year
+SELECT
+    fiscal_year,
+    ROUND(SUM(total_revenue_usd), 2)                            AS revenue,
+    ROUND(AVG(gross_margin_pct), 2)                             AS gross_margin_pct,
+    ROUND(SUM(total_opex_usd) / SUM(total_revenue_usd) * 100, 2) AS opex_pct_of_revenue,
+    ROUND(AVG(ebit_margin_pct), 2)                              AS ebit_margin_pct,
+    ROUND(AVG(net_margin_pct), 2)                               AS net_margin_pct
+FROM novatech.pnl_summary
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+
+-- ── ANALYSIS 2: Quarterly margin trend — where did 2024 break?
+SELECT
+    period,
+    fiscal_year,
+    quarter,
+    gross_margin_pct,
+    ebit_margin_pct,
+    net_margin_pct,
+    ROUND(total_opex_usd / total_revenue_usd * 100, 2)          AS opex_pct_of_revenue
+FROM novatech.pnl_summary
+ORDER BY fiscal_year, quarter;
+
+-- ── ANALYSIS 3: Gross margin vs EBIT margin gap
+-- A widening gap = opex is the problem, not COGS
+SELECT
+    fiscal_year,
+    ROUND(AVG(gross_margin_pct), 2)                             AS avg_gross_margin,
+    ROUND(AVG(ebit_margin_pct), 2)                              AS avg_ebit_margin,
+    ROUND(AVG(gross_margin_pct) - AVG(ebit_margin_pct), 2)      AS margin_gap,
+    ROUND(AVG(total_opex_usd / total_revenue_usd * 100), 2)     AS opex_burden_pct
+FROM novatech.pnl_summary
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+
+-- ── ANALYSIS 4: Product-level margin comparison across years
+SELECT
+    product_category,
+    fiscal_year,
+    ROUND(SUM(revenue_usd), 2)                                  AS revenue,
+    ROUND(SUM(gross_profit_usd), 2)                             AS gross_profit,
+    ROUND(AVG(gross_margin_pct), 2)                             AS avg_gross_margin_pct,
+    ROUND(
+        AVG(gross_margin_pct) - LAG(AVG(gross_margin_pct))
+            OVER (PARTITION BY product_category ORDER BY fiscal_year)
+    , 2)                                                         AS margin_change_vs_prior_yr
+FROM novatech.revenue_by_product_region
+GROUP BY product_category, fiscal_year
+ORDER BY product_category, fiscal_year;
+
+-- ── ANALYSIS 5: The opex problem — how much did overspending cost?
+-- Calculates what EBIT would have been if opex stayed at 2023 levels
+WITH opex_baseline AS (
+    SELECT
+        ROUND(AVG(total_opex_usd / total_revenue_usd), 4)      AS baseline_opex_ratio
+    FROM novatech.pnl_summary
+    WHERE fiscal_year = 2023
+)
+SELECT
+    p.period,
+    p.fiscal_year,
+    p.quarter,
+    ROUND(p.total_revenue_usd, 2)                               AS revenue,
+    ROUND(p.total_opex_usd, 2)                                  AS actual_opex,
+    ROUND(p.total_revenue_usd * ob.baseline_opex_ratio, 2)      AS opex_at_2023_rate,
+    ROUND(p.total_opex_usd -
+          (p.total_revenue_usd * ob.baseline_opex_ratio), 2)    AS excess_opex,
+    ROUND(p.ebit_usd, 2)                                        AS actual_ebit,
+    ROUND(p.ebit_usd +
+         (p.total_opex_usd -
+          p.total_revenue_usd * ob.baseline_opex_ratio), 2)     AS ebit_if_opex_controlled
+FROM novatech.pnl_summary p
+CROSS JOIN opex_baseline ob
+WHERE p.fiscal_year = 2024
+ORDER BY p.quarter;
+
+
+-- ============================================================
+-- SECTION 6: BUDGET VARIANCE ANALYSIS
+-- ============================================================
+
+-- ── ANALYSIS 1: Company-wide budget performance by year
+SELECT
+    fiscal_year,
+    ROUND(SUM(budget_usd), 2)                               AS total_budget,
+    ROUND(SUM(actual_usd), 2)                               AS total_actual,
+    ROUND(SUM(variance_usd), 2)                             AS total_variance,
+    ROUND(SUM(variance_usd) / SUM(budget_usd) * 100, 2)    AS overall_variance_pct,
+    SUM(CASE WHEN variance_usd > 0 THEN 1 ELSE 0 END)      AS depts_over_budget,
+    SUM(CASE WHEN variance_usd < 0 THEN 1 ELSE 0 END)      AS depts_under_budget
+FROM novatech.budget_vs_actuals
+WHERE has_actual = TRUE
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+
+-- ── ANALYSIS 2: Department-level variance — who overspent most in 2024?
+SELECT
+    department,
+    cost_type,
+    ROUND(SUM(budget_usd), 2)                               AS total_budget,
+    ROUND(SUM(actual_usd), 2)                               AS total_actual,
+    ROUND(SUM(variance_usd), 2)                             AS total_variance,
+    ROUND(SUM(variance_usd) / SUM(budget_usd) * 100, 2)    AS variance_pct,
+    CASE
+        WHEN SUM(variance_usd) / SUM(budget_usd) * 100 > 10
+            THEN 'Critical Overrun'
+        WHEN SUM(variance_usd) / SUM(budget_usd) * 100 > 5
+            THEN 'Significant Overrun'
+        WHEN SUM(variance_usd) / SUM(budget_usd) * 100 > 0
+            THEN 'Minor Overrun'
+        ELSE 'Under Budget'
+    END                                                      AS variance_flag
+FROM novatech.budget_vs_actuals
+WHERE fiscal_year = 2024
+  AND has_actual = TRUE
+GROUP BY department, cost_type
+ORDER BY variance_pct DESC;
+
+-- ── ANALYSIS 3: Quarterly variance trend per department
+SELECT
+    department,
+    ROUND(MAX(CASE WHEN quarter = 'Q1' THEN variance_pct END), 2) AS q1_variance_pct,
+    ROUND(MAX(CASE WHEN quarter = 'Q2' THEN variance_pct END), 2) AS q2_variance_pct,
+    ROUND(MAX(CASE WHEN quarter = 'Q3' THEN variance_pct END), 2) AS q3_variance_pct,
+    ROUND(MAX(CASE WHEN quarter = 'Q4' THEN variance_pct END), 2) AS q4_variance_pct
+FROM novatech.budget_vs_actuals
+WHERE fiscal_year = 2024
+  AND has_actual = TRUE
+GROUP BY department
+ORDER BY
+    ROUND(MAX(CASE WHEN quarter = 'Q1' THEN variance_pct END), 2) +
+    ROUND(MAX(CASE WHEN quarter = 'Q2' THEN variance_pct END), 2) +
+    ROUND(MAX(CASE WHEN quarter = 'Q3' THEN variance_pct END), 2) +
+    ROUND(MAX(CASE WHEN quarter = 'Q4' THEN variance_pct END), 2) DESC;
+
+-- ── ANALYSIS 4: Headcount vs budget growth — are costs people-driven?
+SELECT
+    fiscal_year,
+    department,
+    SUM(headcount)                                          AS total_headcount,
+    ROUND(SUM(budget_usd), 2)                              AS total_budget,
+    ROUND(SUM(budget_usd) / NULLIF(SUM(headcount), 0), 2) AS budget_per_head,
+    ROUND(
+        (SUM(budget_usd) / NULLIF(SUM(headcount), 0)) -
+        LAG(SUM(budget_usd) / NULLIF(SUM(headcount), 0))
+            OVER (PARTITION BY department ORDER BY fiscal_year)
+    , 2)                                                    AS cost_per_head_change
+FROM novatech.budget_vs_actuals
+GROUP BY fiscal_year, department
+ORDER BY department, fiscal_year;
+
+-- ── ANALYSIS 5: Q1 2025 variance — are cost controls actually working?
+SELECT
+    department,
+    ROUND(SUM(budget_usd), 2)                              AS budget,
+    ROUND(SUM(actual_usd), 2)                              AS actual,
+    ROUND(SUM(variance_usd), 2)                            AS variance,
+    ROUND(SUM(variance_usd) / SUM(budget_usd) * 100, 2)   AS variance_pct,
+    CASE
+        WHEN SUM(variance_usd) / SUM(budget_usd) * 100 < 0
+            THEN 'Cost Controls Working'
+        WHEN SUM(variance_usd) / SUM(budget_usd) * 100 < 3
+            THEN 'Stable'
+        ELSE 'Still Elevated'
+    END                                                     AS recovery_status
+FROM novatech.budget_vs_actuals
+WHERE fiscal_year = 2025
+  AND has_actual = TRUE
+GROUP BY department
+ORDER BY variance_pct DESC;
+
+
+-- ============================================================
+-- SECTION 7: KPI SCORECARD & FORWARD LOOK
+-- ============================================================
+
+-- ── ANALYSIS 1: Full KPI scorecard — all years, all metrics
+SELECT
+    kpi_name,
+    fiscal_year,
+    target,
+    actual,
+    vs_target,
+    status,
+    CASE
+        WHEN vs_target < -3  THEN 'Significant Miss'
+        WHEN vs_target < 0   THEN 'Marginal Miss'
+        WHEN vs_target >= 0  THEN 'On Target'
+        ELSE 'No Data'
+    END                                                     AS severity
+FROM novatech.kpi_targets_actuals
+WHERE status != 'Forecast'
+ORDER BY fiscal_year, kpi_name;
+
+-- ── ANALYSIS 2: KPI hit rate by year
+SELECT
+    fiscal_year,
+    COUNT(*)                                                AS total_kpis,
+    SUM(CASE WHEN status = 'Hit'  THEN 1 ELSE 0 END)      AS kpis_hit,
+    SUM(CASE WHEN status = 'Miss' THEN 1 ELSE 0 END)      AS kpis_missed,
+    ROUND(
+        SUM(CASE WHEN status = 'Hit' THEN 1 ELSE 0 END)::NUMERIC
+        / COUNT(*) * 100
+    , 1)                                                    AS hit_rate_pct
+FROM novatech.kpi_targets_actuals
+WHERE status != 'Forecast'
+GROUP BY fiscal_year
+ORDER BY fiscal_year;
+
+-- ── ANALYSIS 3: Which KPIs are consistently missed?
+SELECT
+    kpi_name,
+    COUNT(*)                                                AS years_tracked,
+    SUM(CASE WHEN status = 'Hit'  THEN 1 ELSE 0 END)      AS times_hit,
+    SUM(CASE WHEN status = 'Miss' THEN 1 ELSE 0 END)      AS times_missed,
+    ROUND(AVG(vs_target), 2)                               AS avg_vs_target,
+    ROUND(MIN(vs_target), 2)                               AS worst_miss
+FROM novatech.kpi_targets_actuals
+WHERE status != 'Forecast'
+GROUP BY kpi_name
+ORDER BY times_missed DESC, avg_vs_target ASC;
+
+-- ── ANALYSIS 4: 2025 forecast gap — what needs to happen to hit targets?
+SELECT
+    k.kpi_name,
+    k.target                                                AS full_year_target,
+    k.actual                                                AS q1_actual,
+    ROUND(k.target - k.actual, 2)                          AS gap_to_close,
+    CASE
+        WHEN k.actual >= k.target        THEN 'Ahead of Target'
+        WHEN k.actual >= k.target * 0.95 THEN 'On Track'
+        WHEN k.actual >= k.target * 0.90 THEN 'At Risk'
+        ELSE 'Critical Gap'
+    END                                                     AS trajectory
+FROM novatech.kpi_targets_actuals k
+WHERE fiscal_year = 2025
+ORDER BY gap_to_close DESC;
+
+-- ── ANALYSIS 5: Simulated full-year 2025 revenue projection
+-- Uses seasonal index from 2022-2023 applied to Q1 2025 actuals
+WITH q1_actuals AS (
+    SELECT
+        SUM(total_revenue_usd)                              AS q1_revenue,
+        AVG(gross_margin_pct)                               AS q1_gross_margin,
+        AVG(ebit_margin_pct)                                AS q1_ebit_margin,
+        AVG(net_margin_pct)                                 AS q1_net_margin
+    FROM novatech.pnl_summary
+    WHERE fiscal_year = 2025
+),
+prior_seasonality AS (
+    SELECT
+        quarter,
+        AVG(total_revenue_usd) /
+            AVG(AVG(total_revenue_usd)) OVER ()             AS seasonal_index
+    FROM novatech.pnl_summary
+    WHERE fiscal_year IN (2022, 2023)
+    GROUP BY quarter
+)
+SELECT
+    ps.quarter,
+    ROUND(q1.q1_revenue * ps.seasonal_index, 2)            AS projected_revenue,
+    ROUND(q1.q1_revenue * ps.seasonal_index
+          * q1.q1_gross_margin / 100, 2)                   AS projected_gross_profit,
+    ROUND(q1.q1_revenue * ps.seasonal_index
+          * q1.q1_ebit_margin / 100, 2)                    AS projected_ebit
+FROM prior_seasonality ps
+CROSS JOIN q1_actuals q1
+ORDER BY ps.quarter;
