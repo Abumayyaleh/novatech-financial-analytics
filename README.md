@@ -134,39 +134,6 @@ Full KPI execution tracking across all 7 metrics for 4 fiscal years. Hit rate dr
 | 03 - KPI | 6 | KPI Hit Rate %, Miss Count, Hit Count, Avg vs Target, 2025 EBIT Gap, Trajectory Label |
 | 04 - Labels | 5 | Formatted text measures for card subtitles |
 
-### Notable DAX Patterns
-
-**Cross-year baseline with REMOVEFILTERS — what-if EBIT analysis:**
-```dax
-EBIT If Opex Controlled =
-VAR Rev2023 =
-    CALCULATE(SUM('novatech pnl_summary'[total_revenue_usd]),
-        REMOVEFILTERS('novatech pnl_summary'),
-        'novatech pnl_summary'[fiscal_year] = 2023)
-VAR Opex2023 =
-    CALCULATE(SUM('novatech pnl_summary'[total_opex_usd]),
-        REMOVEFILTERS('novatech pnl_summary'),
-        'novatech pnl_summary'[fiscal_year] = 2023)
-VAR Baseline = DIVIDE(Opex2023, Rev2023, 0)
-RETURN
-    SUM('novatech pnl_summary'[gross_profit_usd]) -
-    (SUM('novatech pnl_summary'[total_revenue_usd]) * Baseline)
-```
-
-**Dynamic KPI trajectory label:**
-```dax
-KPI Trajectory Label =
-VAR gap = CALCULATE(
-    AVERAGE('novatech kpi_targets_actuals'[vs_target]),
-    'novatech kpi_targets_actuals'[status] <> "Forecast")
-RETURN
-SWITCH(TRUE(),
-    gap >= 0,  "Ahead of Target",
-    gap >= -1, "On Track",
-    gap >= -3, "At Risk",
-               "Critical Gap")
-```
-
 ---
 
 ## Key Business Findings
