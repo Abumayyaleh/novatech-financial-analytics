@@ -67,16 +67,26 @@ sql/
 ---
 
 ## Power BI Dashboard — 4 Pages
+## Dashboard Screenshots
+
+### Page 1 — Executive Overview
+![Executive Overview](screenshots/page1_executive_overview.png)
+
+### Page 2 — Revenue & Growth
+![Revenue & Growth](screenshots/page2_revenue_growth.png)
+
+### Page 3 — Margin & Budget
+![Margin & Budget](screenshots/page3_margin_budget.png)
+
+### Page 4 — KPI Scorecard
+![KPI Scorecard](screenshots/page4_kpi_scorecard.png)
 
 ### Architectural Decision
 No medallion architecture. Finance data arrives pre-aggregated from source systems — a Bronze→Silver→Gold pipeline adds complexity with no analytical benefit for quarterly P&L data. Four staging tables connect directly to Power BI via Import mode.
 
-### Data Model
-```
-novatech pnl_summary
-    ├── [period]      →→  novatech budget_vs_actuals [period]
-    ├── [period]      →→  novatech revenue_by_product_region [period]
-    └── [fiscal_year] →→  novatech kpi_targets_actuals [fiscal_year]
+## Data Model
+
+![Data Model](screenshots/data_model.png)
 
 All relationships: Many-to-Many, Both directions
 Supporting tables: _Measures, Margin Stages (calculated)
