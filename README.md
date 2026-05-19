@@ -168,32 +168,22 @@ novatech-financial-analytics/
 │   ├── 01_CREATE_IMPORT_VALIDATE.sql
 │   └── 02_FINANCIAL_BUSINESS_ANALYSIS.sql
 │
-├── wireframes/
-│   ├── page1_executive_overview.html
-│   ├── page2_revenue_growth.html
-│   ├── page3_margin_budget.html
-│   └── page4_kpi_scorecard.html
-│
 ├── screenshots/
 │   ├── data_model.png
 │   ├── page1_executive_overview.png
 │   ├── page2_revenue_growth.png
 │   ├── page3_margin_budget.png
 │   └── page4_kpi_scorecard.png
-│
-├── NovaTech_Financial_Analytics.pbix
-├── NovaTech_LinkedIn_Findings.pptx
-└── README.md
 ```
 
 ---
 
 ## Author
 
-**Mohammad [Last Name]**
+**Mohammad Abu-Mayyaleh**
 Junior Data Analyst | SQL · Power BI · DAX · Financial Analytics
 
-[LinkedIn](#) · [GitHub](#)
+[LinkedIn][(https://www.linkedin.com/in/mohammad-abu-mayyaleh/)
 
 ---
 
